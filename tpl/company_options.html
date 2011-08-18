@@ -1,0 +1,96 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_form_head.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>公司資料</h3>
+    </header>
+    <div class="module_content">
+        <form id="_form" class="wufoo">
+            <ul>
+                <li>
+                    <label class="desc" for="company_name">
+                        公司名稱：
+                    </label>
+                    <span>
+                        <input class="required field text" size="50" type="text" value="{{company_name}}" name="company_name" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="company_id">
+                        公司統編：
+                    </label>
+                    <span>
+                        <input class="required field text" size="50" type="text" value="{{company_id}}" name="company_id" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="company_addr">
+                        公司地址：
+                    </label>
+                    <span>
+                        <input class="required field text" size="50" type="text" value="{{company_addr}}" name="company_addr" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="company_phone">
+                        公司電話：
+                    </label>
+                    <span>
+                        <input class="required field text" size="50" type="text" value="{{company_phone}}" name="company_phone" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="company_fax">
+                        公司傳真：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{company_fax}}" name="company_fax" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="company_email">
+                        預設 Email：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{company_email}}" name="company_email" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="company_username">
+                        預設聯絡人：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{company_username}}" name="company_username" />
+                    </span>
+                </li>
+            </ul>
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="儲存" />
+            </div>
+        </form>
+    </div>
+</article>
+
+<div id="show_notice" style="display:none;"></div>
+
+<script type="text/javascript">
+$(function() {
+    $('#_form').validate({
+        submitHandler: function() {
+            $.post('ajax_save_options', $('#_form').serialize(), function(data) {
+                $('#show_notice').html(data).fadeIn('slow');
+            });
+            return false;
+        }
+    });
+});
+</script>
+
+{% endblock %}

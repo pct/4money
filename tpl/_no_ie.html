@@ -1,0 +1,18 @@
+<div id="ie_only" style="display:none;">
+    <h4 class="alert_error">
+        您正使用 IE，請換到更高級的瀏覽器 ( <a href="http://www.google.com/chrome/?hl=zh-TW" target="_blank">Google Chrome</a>, <a href="http://moztw.org/" target="_blank">Firefox</a>, <a href="http://www.apple.com/tw/safari/download/" target="_blank">Safari</a>, <a href="http://tw.opera.com/" target="_blank">Opera</a> )。
+    </h4>
+    <h4 class="alert_warning">
+        <a href="http://ie6countdown.tw/" target="_blank">微軟自己都放棄 IE6</a> 了，請換掉您的瀏覽器，為台灣的設計師們盡一點心力！
+    </h4>
+</div>
+
+<script type="text/javascript">
+$(function() {
+    if ($.browser.msie) {
+        $('#ie_only').show();
+    } else {
+        $('#ie_only').hide();
+    }
+});
+</script>

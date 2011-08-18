@@ -1,0 +1,17 @@
+﻿{
+	"sProcessing":   "處理中...",
+	"sLengthMenu":   "顯示 _MENU_ 筆結果",
+	"sZeroRecords":  "找不到任何資料",
+	"sInfo":         "　共有 <font color=red><b>_TOTAL_</b></font> 筆資料",
+	"sInfoEmpty":    "　共有 <font color=red><b>0</b></font> 筆資料",
+	"sInfoFiltered": "(由 _MAX_ 筆結果過濾)",
+	"sInfoPostFix":  "",
+	"sSearch":       "搜尋:",
+	"sUrl":          "",
+	"oPaginate": {
+		"sFirst":    "第一頁",
+		"sPrevious": "上一頁",
+		"sNext":     "下一頁",
+		"sLast":     "最後一頁"
+	}
+}

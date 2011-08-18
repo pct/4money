@@ -1,0 +1,88 @@
+.quotation p {
+    width:820px;
+    margin-top: 10px;
+}
+.quotation p:hover {
+    background-color: #F9F5C6;
+}
+.quotation p:focus {
+    background-color: #F9F3A7;
+}
+.quotation p#quotation_name {
+    font-size: 16px;
+}
+.quotation p#company_name {
+    font-size:20px;
+}
+.quotation p#company_info {
+    font-size:16px;
+}
+.quotation .company p {
+    width:400px;
+    height:110px;
+    margin-right:15px;
+}
+.quotation #item_list, .quotation #price_info {
+    margin-top: 20px;
+}
+.quotation #price_info table {
+    width: 200px;
+    margin-left: 610px;
+}
+.quotation #price_info th {
+    text-align: left;
+    text-indent: 10px;
+    width: 100px;
+}
+.quotation #item_list table {
+    width: 855px;
+}
+.quotation #item_list p {
+    width: 160px;
+    height: 24px;
+}
+.quotation #item_list, .quotation #price_info {
+    font-size: 14px;
+}
+.quotation tr, .quotation th, .quotation td {
+    border: 1px solid #ccc;
+    color: black;
+}
+.quotation td {
+    padding: 10px;
+}
+.quotation th.action, .quotation td.action {
+    width: 5px;
+    border: 0px none;
+}
+.quotation #customer_notes {
+    height: 200px;
+}
+.quotation #confirm {
+    margin-top: 10px;
+    border: 1px solid black;
+    height: 200px;
+    width: 400px;
+    text-align:left;
+    margin-left: 410px;
+    font-size: 20px;
+    color: black;
+}
+.quotation #fax {
+    font-size: 16px;
+    text-align: right;
+    border: 0px;
+    margin-left: 40px;
+    margin-top: 140px;
+}
+.quotation #add_item, .quotation .remove_item {
+    cursor: pointer;
+    color: #77BACE;
+}
+.quotation .item_price, .quotation .item_quantity, .quotation .item_sub_total {
+    text-align: right;
+}
+.quotation #confirm_notes {
+    margin: 2px;
+    border-bottom: 1px solid black;
+}

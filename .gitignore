@@ -1,0 +1,4 @@
+*~
+*.swp
+tpl_cache/*
+logs/*

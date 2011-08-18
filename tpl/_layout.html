@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        {% block head %}
+        {% include '_header.html' %}
+        {% endblock %}
+    </head>
+    <body>
+        <header id="header">
+            <hgroup>
+                <h1 class="site_title"><a href="home">4money</a></h1>
+                <h2 class="section_title">{{breadcrumb_title}}</h2>
+            </hgroup>
+        </header>
+        <section id="secondary_bar">
+            <div class="user">
+                <p>user</p>
+            </div>
+            {% include '_breadcrumb.html' %}
+        </section>
+        <aside id="sidebar" class="column">
+            {% include '_sidebar.html' %}
+        </aside>
+        <section id="main" class="column">
+            <div id="main_content">
+                {% include '_no_script.html' %}
+                {% include '_no_ie.html' %}
+                {% block content %}
+                {% endblock %}
+                <footer>
+                    {% include '_footer.html' %}
+                </footer>
+            </div>
+        </section>
+    </body>
+</html>

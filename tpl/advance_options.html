@@ -1,0 +1,48 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_form_head.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>進階設定</h3>
+    </header>
+    <div class="module_content">
+        <form id="_form" class="wufoo">
+            <ul>
+                <li>
+                    <label class="desc" for="quotation_id_prefix">
+                        報價單前綴編號或文字：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{quotation_id_prefix}}" name="quotation_id_prefix" />
+                    </span>
+                </li>
+            </ul>
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="儲存" />
+            </div>
+        </form>
+    </div> 
+</article>
+
+<div id="show_notice" style="display:none;"></div>
+
+<script type="text/javascript">
+$(function() {
+    $('#_form').validate({
+        submitHandler: function() {
+            $.post('ajax_save_options', $('#_form').serialize(), function(data) {
+                $('#show_notice').html(data).fadeIn('slow');
+            });
+            return false;
+        }
+    });
+});
+</script>
+
+{% endblock %}

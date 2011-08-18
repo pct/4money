@@ -1,0 +1,51 @@
+/* - - - - - - - - - - - - - - - - - - - - -
+
+Title : Wufoo Form Structure
+URL : http://wufoo.com
+
+- - - - - - - - - - - - - - - - - - - - - */
+
+article, aside, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, video, object, output {
+	display: block;
+}
+
+#container{
+	text-align:left;
+	background:#fff;
+	border:1px solid #ccc;
+	-webkit-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	-moz-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	-o-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+}
+#container, #bottom{
+	margin:0 auto;
+	width:640px;
+}
+#bottom{
+	width:650px;
+	height:10px !important;
+	margin-bottom:10px;
+	display:block !important;
+}
+
+form.wufoo{
+	margin:20px 14px 0 14px;
+	padding:0 0 20px 0;
+	position:relative;
+}
+
+img, a img{
+	border:none;
+	-ms-interpolation-mode: bicubic;
+}
+* html #bottom{ 
+	_behavior: url(../images/iepngfix.htc);
+}
+.hide, .cloak div, .cloak span, .likert.cloak tbody, .likert.cloak thead{
+	display:none !important;
+}
+.likert.cloak table{
+	border:none;
+}

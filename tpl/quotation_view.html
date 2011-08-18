@@ -1,0 +1,137 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_form_head.html' %}
+<link rel="stylesheet" href="css/quotation_view.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/quotation_print.css" type="text/css" media="print" />
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>報價單列表</h3>
+    </header>
+    <div class="module_content quotation">
+        <form id="_form" method="post">
+            <div class="company">
+                <p id="company_name">{{quotation.company_name}}</p>
+                <p id="company_info">{{quotation.company_info}}</p>
+            </div>
+            <div>
+                <p id="quotation_name">{{quotation.quotation_name}}</p>
+            </div>
+            <hr />
+            <div class="company">
+                <p id="customer_info">{{quotation.customer_info}}</p>
+                <p id="company_contact">{{quotation.company_contact}}</p>
+            </div>
+            <div id="item_list">
+                <table cellspacing="0" cellpadding="0" id="item_table">
+                    <thead>
+                        <tr>
+                            <th>項目說明</th>
+                            <th>數量</th>
+                            <th>單價</th>
+                            <th>金額</th>
+                            <th>備註</th>
+                            <th class="action">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" name="items[0][desc]" />
+                            </td>
+                            <td>
+                                <input type="text" name="items[0][quantity]" class="item_quantity" />
+                            </td>
+                            <td>
+                                <input type="text" name="items[0][price]" class="item_price" />
+                            </td>
+                            <td>
+                                <span class="item_sub_total">&nbsp;</span>
+                            </td>
+                            <td>
+                                <input type="text" name="items[0][notes]" />
+                            </td>
+                            <td class="action">
+                                <a class="remove_item">[X]</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <a id="add_item">[+]增加項目</a>
+                            </td>
+                            <td class="action">&nbsp;</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <table cellspacing="0" cellpadding="0">
+                    <tr id="item_tpl" style="display:none;">
+                        <td>
+                            <input type="text" name="items_desc" />
+                        </td>
+                        <td>
+                            <input type="text" name="items_quantity" class="item_quantity" />
+                        </td>
+                        <td>
+                            <input type="text" name="items_price" class="item_price" />
+                        </td>
+                        <td>
+                            <span class="item_sub_total">&nbsp;</span>
+                        </td>
+                        <td>
+                            <input type="text" name="items_notes" />
+                        </td>
+                        <td class="action">
+                            <a class="remove_item">[x]</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="price_info">
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>小計</th>
+                        <td id="sub_total_price">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>稅金 (5%)</th>
+                        <td id="vat_price">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>總計</th>
+                        <td id="total_price">&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <textarea id="customer_notes" name="customer_notes">補充說明或合約</textarea>
+            </div>
+            <div class="company">
+                <hr />
+                <p id="bank_info">{{quotation.bank_info}}</p>
+                <hr />
+            </div>
+            <div id="confirm">
+                <div id="confirm_notes">&nbsp;確認訂單(請在此處簽名並蓋公司用印)</div>
+                {% if company_fax %}
+                <div id="fax">簽名蓋章後請傳真回 {{company_fax}}，謝謝！</div>
+                {% endif %}
+            </div>
+            <div class="clear"></div>
+            <input type="hidden" name="sub_total_price" value="" />
+            <input type="hidden" name="vat_price" value="" />
+            <input type="hidden" name="total_price" value="" />
+            <input type="submit" value="建立報價單" />
+        </form>
+    </div>
+</article>
+
+<div id="show_notice" style="display:none;"></div>
+
+{% endblock %}

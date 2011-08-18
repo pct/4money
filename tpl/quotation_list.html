@@ -1,0 +1,60 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+<link rel="stylesheet" href="css/page.css" type="text/css" />
+<link rel="stylesheet" href="css/table_jui.css" type="text/css" />
+<link rel="stylesheet" href="css/flick/jquery-ui.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>報價單列表</h3>
+    </header>
+    <div class="module_content">
+        <table id="quotation_list_table" cellpadding="0" cellspacing="0" border="0" class="display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>編號</th>
+                    <th>訂單名稱</th>
+                    <th>客戶資料</th>
+                    <th>未稅</th>
+                    <th>總價</th>
+                    <th>狀態</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quotation in quotations %}
+                <tr>
+                    <td>{{quotation.quotation_id}}</td>
+                    <td>{{quotation.quotation_name}}</td>
+                    <td>{{quotation.customer_info}}</td>
+                    <td>{{quotation.sub_total_price}}</td>
+                    <td>{{quotation.total_price}}</td>
+                    <td>{{quotation_status_words[quotation.status]}}</td>
+                    <td>
+                        <a href="quotation_view/{{quotation.quotation_id}}">查看</a> | 
+                        <a href="quotation_view/{{quotation.quotation_id}}">變更狀態</a> 
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</article>
+
+<script type="text/javascript">
+$(function() {
+    $('#quotation_list_table').dataTable({"bJQueryUI": true, "sPaginationType": "full_numbers", "oLanguage":{
+        "sUrl": "js/datatables_tw.txt"
+        }
+    });
+});
+</script>
+
+{% endblock %}

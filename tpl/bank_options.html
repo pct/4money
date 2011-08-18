@@ -1,0 +1,72 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_form_head.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>銀行帳戶資料</h3>
+    </header>
+    <div class="module_content">
+        <form id="_form" class="wufoo">
+            <ul>
+                <li>
+                    <label class="desc" for="bank_company_title">
+                        帳戶名稱：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{bank_company_title}}" name="bank_company_title" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="bank_name">
+                        銀行名稱：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{bank_name}}" name="bank_name" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="bank_code">
+                        銀行代碼：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{bank_code}}" name="bank_code" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="bank_account">
+                        匯款帳號：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{bank_account}}" name="bank_account" />
+                    </span>
+                </li>
+            </ul>
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="儲存" />
+            </div>
+        </form>
+    </div>
+</article>
+
+<div id="show_notice" style="display:none;"></div>
+
+<script type="text/javascript">
+$(function() {
+    $('#_form').validate({
+        submitHandler: function() {
+            $.post('ajax_save_options', $('#_form').serialize(), function(data) {
+                $('#show_notice').html(data).fadeIn('slow');
+            });
+            return false;
+        }
+    });
+});
+</script>
+
+{% endblock %}
