@@ -2,11 +2,11 @@
 
 {% block head %}
 {% include '_header.html' %}
-<link rel="stylesheet" href="css/page.css" type="text/css" />
-<link rel="stylesheet" href="css/table_jui.css" type="text/css" />
-<link rel="stylesheet" href="css/flick/jquery-ui.css" type="text/css" />
-<script type="text/javascript" src="js/jquery-ui.js"></script>
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="{{doc_root}}/css/page.css" type="text/css" />
+<link rel="stylesheet" href="{{doc_root}}/css/table_jui.css" type="text/css" />
+<link rel="stylesheet" href="{{doc_root}}/css/flick/jquery-ui.css" type="text/css" />
+<script type="text/javascript" src="{{doc_root}}/js/jquery-ui.js"></script>
+<script type="text/javascript" src="{{doc_root}}/js/jquery.dataTables.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -32,7 +32,9 @@
                 {% for quotation in quotations %}
                 <tr>
                     <td>{{quotation.quotation_id}}</td>
-                    <td>{{quotation.quotation_name}}</td>
+                    <td>
+                        <a href="{{doc_root}}/quotation_view/{{quotation.quotation_id}}">{{quotation.quotation_name}}</a>
+                    </td>
                     <td>{{quotation.customer_info}}</td>
                     <td>{{quotation.sub_total_price}}</td>
                     <td>{{quotation.total_price}}</td>

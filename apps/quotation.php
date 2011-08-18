@@ -78,14 +78,18 @@ $app->get('/quotation_view/:id', function($id) use ($app) {
         exit;    
     } 
 
+    $quotation_items = unserialize($quotation->items);
+
     $data = array(
         'breadcrumb_title' => '查看報價單',
-        'quotation'        => $quotation
+        'quotation'        => $quotation,
+        'quotation_items'  => $quotation_items,
     );
 
     $data = array_merge($data, $options);
     $app->render('quotation_view.html', $data);
 });
+
 $app->post('/ajax_save_quotations', function() use ($app) {
     $quotation_keys = array(
         'quotation_name', 
@@ -112,7 +116,9 @@ $app->post('/ajax_save_quotations', function() use ($app) {
         if ($ret) {
             $data = array(
                 'class' => 'success',
-                'msg'   => '報價單建立成功！'
+                'msg'   => '報價單建立成功！',
+                'link'  => 'quotation_list',
+                'link_msg' => '到列表查看'
             );
         } else {
             $data = array(

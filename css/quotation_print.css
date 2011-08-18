@@ -19,16 +19,19 @@
 .quotation input[type="text"]:focus, textarea:focus {
     background-color: #F9F3A7;
 }
-.quotation input#quotation_name {
+.quotation #quotation_name {
     font-size: 16px;
 }
-.quotation textarea#company_name {
+.quotation #company_name {
     font-size:20px;
+    float:left;
 }
-.quotation textarea#company_info {
+.quotation #company_info {
+    float:left;
+    margin-left:10px;
     font-size:16px;
 }
-.quotation .company textarea {
+.quotation .company textarea, .quotation .company p {
     width:380px;
     height:110px;
     margin-right:15px;
@@ -59,9 +62,22 @@
     width: 5px;
     border: 0px none;
 }
+.quotation #customer_notes {
+    min-height: 10px;
+    font-size:14px;
+}
+.quotation #customer_info {
+    font-size: 16px;
+    float: left;
+}
+.quotation #company_contact {
+    font-size: 16px;
+    float: left;
+    margin-left: 10px;
+}
 .quotation #confirm {
     margin-top: 10px;
-    border: 2px solid black;
+    border: 1px solid black;
     height: 200px;
     width: 400px;
     text-align:left;
@@ -76,19 +92,12 @@
     margin-left: 40px;
     margin-top: 140px;
 }
-.quotation input[type="submit"] {
-    width: 120px;
-    height: 50px;
-    font-size:20px;
-}
-.quotation #add_item, .quotation .remove_item {
-    cursor: pointer;
-    color: #77BACE;
-}
 .quotation .item_price, .quotation .item_quantity, .quotation .item_sub_total {
     text-align: right;
 }
-
+.quotation .item_sub_total {
+    padding-right: 5px;
+}
 .quotation table {
     border: 1px solid gray;
     border-width: 0px;
@@ -136,4 +145,10 @@
 .quotation #confirm_notes {
     margin: 2px;
     border-bottom: 1px solid black;
+}
+.quotation #bank_info {
+    font-size: 16px;
+}
+.quotation #price_info {
+    text-align:right;
 }
