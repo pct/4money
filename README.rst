@@ -43,6 +43,10 @@ A::
    It is NOT safe when you have bad guys at your place. 
    It has been quick developed(in less than a week), but it's enough for simple use at private network.
 
+#. Q: Where can I print my quotation?
+A::
+    Both at "create quotation" and "view quotation", you could just use system print hot key.
+
 License
 -------
 http://www.opensource.org/licenses/bsd-license.php
