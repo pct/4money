@@ -5,25 +5,25 @@
 
 Requirement 
 ------------
-# php 5.3
-# mysql 5
-# apache2 or nginx with url rewrite
+#. php 5.3
+#. mysql 5
+#. apache2 or nginx with url rewrite
 
 Install
 ---------
-# create sql using 4money.sql::
+#. create sql using 4money.sql::
 
     # mysqladmin create 4money
     # mysql 4money < sql/4money.sql
 
-# let logs can be written by www user::
+#. let logs can be written by www user::
 
     # chown -R www:www logs tpl_cache
 
-# enable apache rewrite
+#. enable apache rewrite
 
 Thanks for these libraries
 --------------------------
-# Slim php framework (http://www.slimframework.com/)
-# idiorm (http://j4mie.github.com/idiormandparis/)
-# Free HTML5 Admin Template (http://medialoot.com/item/html5-admin-template/)
+#. Slim php framework (http://www.slimframework.com/)
+#. idiorm (http://j4mie.github.com/idiormandparis/)
+#. Free HTML5 Admin Template (http://medialoot.com/item/html5-admin-template/)
