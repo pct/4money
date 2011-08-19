@@ -1,4 +1,4 @@
 *~
 *.swp
-tpl_cache/*
-logs/*
+tpl_cache/*.php
+logs/*.log
