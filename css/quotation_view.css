@@ -9,6 +9,7 @@
 }
 .quotation #company_name {
     font-size:20px;
+    height: 100px;
     float:left;
 }
 .quotation #company_info {

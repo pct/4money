@@ -893,3 +893,9 @@ background: #E2F6C5 url(../images/btn_submit.png) no-repeat;
 #main-nav li {
     padding-left:20px;
 }
+.site_title a img {
+    margin-top: 5px;
+}
+#sidebar {
+    height: 100%;
+}

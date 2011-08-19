@@ -17,6 +17,9 @@
     <div class="module_content quotation">
         <form id="_form" method="post">
             <div class="company">
+                <div id="my_company_logo">
+                    <img src="{{doc_root}}/logo.png" alt="my company logo" />
+                </div>
                 <textarea class="required" id="company_name" name="company_name">{{company_name}} - 報價單</textarea>
                 <textarea class="required" id="company_info" name="company_info">
 {{company_name}}
@@ -40,6 +43,7 @@ Email：{{company_email}}
 日期：{{today}}
                 </textarea>
             </div>
+            <div class="clear"></div>
             <div id="item_list">
                 <table cellspacing="0" cellpadding="0" id="item_table">
                     <thead>

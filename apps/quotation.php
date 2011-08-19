@@ -48,7 +48,7 @@ $app->get('/quotation_list', function() use ($app) {
     $quotations = ORM::for_table('quotation')->find_many();
     $quotation_status_words = array(
         'confirmed' => '訂單確認',
-        'caceled'   => '取消',
+        'canceled'   => '取消',
         'paid'      => '已付款',
         'wait'      => '待回應'
     );
@@ -90,6 +90,32 @@ $app->get('/quotation_view/:id', function($id) use ($app) {
     $app->render('quotation_view.html', $data);
 });
 
+$app->get('/quotation_status_update/:id', function($id) use ($app) {
+    $quotation_status_words = array(
+        'confirmed' => '訂單確認',
+        'canceled'  => '取消',
+        'paid'      => '已付款',
+        'wait'      => '待回應'
+    );
+
+    $quotation = ORM::for_table('quotation')->find_one($id);
+
+    if (!$quotation) {
+        $app->redirect('quotation_list');
+        exit;    
+    } 
+
+    $quotation_items = unserialize($quotation->items);
+
+    $data = array(
+        'breadcrumb_title'       => '更新報價單狀態',
+        'quotation'              => $quotation,
+        'quotation_status_words' => $quotation_status_words,
+    );
+
+    $app->render('quotation_status_update.html', $data);
+});
+
 $app->post('/ajax_save_quotations', function() use ($app) {
     $quotation_keys = array(
         'quotation_name', 
@@ -125,6 +151,34 @@ $app->post('/ajax_save_quotations', function() use ($app) {
                 'class' => 'error',
                 'msg'   => '報價單建立失敗，請重試！'
             );
+        }
+        $app->render('_notice.html', $data);
+    }
+});
+
+
+$app->post('/ajax_update_quotation_status', function() use ($app) {
+    $data = array(
+        'class' => 'error',
+        'msg'   => '報價單更新失敗，請重試！'
+    );
+
+    $post = $app->request()->post();
+    
+    if ($post && intval($post['id'])) {
+        $id = $post['id'];
+        $quotation = ORM::for_table('quotation')->find_one($id);
+        if ($quotation) {
+            $quotation->status = $post['quotation_status'];
+            $ret = $quotation->save();
+            if ($ret) {
+                $data = array(
+                    'class' => 'success',
+                    'msg'   => '報價單狀態更新成功！',
+                    'link'  => 'quotation_list',
+                    'link_msg' => '到列表查看'
+                );
+            }
         }
         $app->render('_notice.html', $data);
     }

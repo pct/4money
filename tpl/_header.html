@@ -29,7 +29,13 @@ $(document).ready(function() {
 });
 </script>
 <script type="text/javascript">
-$(function(){
-    $('.column').equalHeight();
+$(function() {
+    $.equal_height  = function() {
+        $('#sidebar').height('');
+        $('#main').height('');
+        $('.column').equalHeight();
+    };
+
+    $.equal_height();
 });
 </script>

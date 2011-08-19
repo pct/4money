@@ -1,4 +1,4 @@
-#header, #secondary_bar, #sidebar, article header, .action, tfoot, footer, input[type="submit"], img {
+#header, #secondary_bar, #sidebar, article header, .action, tfoot, footer, input[type="submit"] {
     display:none;
 }
 
@@ -24,6 +24,7 @@
 }
 .quotation #company_name {
     font-size:20px;
+    height: 100px;
     float:left;
 }
 .quotation #company_info {

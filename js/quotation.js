@@ -6,7 +6,9 @@ $(function() {
     $('#_form').validate({
         submitHandler: function() {
             $.post('ajax_save_quotations', $('#_form').serialize(), function(data) {
-                $('#show_notice').html(data).fadeIn('slow');
+                $('#show_notice').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
             });
             return false;
         }

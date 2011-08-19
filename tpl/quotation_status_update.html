@@ -1,0 +1,57 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_form_head.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>更新報價單狀態</h3>
+    </header>
+    <div class="module_content">
+        <h3>
+            報價單名稱：{{quotation.quotation_name}}
+        </h3>
+        <form id="_form" class="wufoo">
+            <input type="hidden" name="id" value="{{quotation.quotation_id}}" />
+            <ul>
+                <li>
+                    <label class="desc" for="quotation_status">
+                        原本報價單狀態：{{quotation_status_words[quotation.status]}}
+                    </label>
+                    更新為：
+                    <select class="required" name="quotation_status">
+                        {% for key, status in quotation_status_words %}
+                        <option value="{{key}}" {% if key == quotation.status %}selected="selected"{% endif %}>{{status}}</option>
+                        {% endfor %}
+                    </select>
+                </li>
+            </ul>
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="更新狀態" />
+            </div>
+        </form>
+    </div> 
+</article>
+
+<div id="show_notice" style="display:none;"></div>
+
+<script type="text/javascript">
+$(function() {
+    $('#_form').validate({
+        submitHandler: function() {
+            $.post('{{doc_root}}/ajax_update_quotation_status', $('#_form').serialize(), function(data) {
+                $('#show_notice').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
+            });
+            return false;
+        }
+    });
+});
+</script>
+
+{% endblock %}

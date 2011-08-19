@@ -8,7 +8,9 @@
     <body>
         <header id="header">
             <hgroup>
-                <h1 class="site_title"><a href="{{doc_root}}/home">4money</a></h1>
+                <h1 class="site_title">
+                    <a href="{{doc_root}}/home"><img src="{{doc_root}}/images/4money_logo.png" width="150" alt="4money" title="4money" border="0" /></a>
+                </h1>
                 <h2 class="section_title">{{breadcrumb_title}}</h2>
             </hgroup>
         </header>
@@ -27,10 +29,10 @@
                 {% include '_no_ie.html' %}
                 {% block content %}
                 {% endblock %}
-                <footer>
-                    {% include '_footer.html' %}
-                </footer>
             </div>
+            <footer>
+                {% include '_footer.html' %}
+            </footer>
         </section>
     </body>
 </html>
