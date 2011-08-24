@@ -13,6 +13,10 @@ Quotation
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot2.png
 
+Print
+
+.. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot3.png
+
 Requirement 
 ------------
 #. php 5.3
