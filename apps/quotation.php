@@ -22,8 +22,13 @@ $app->get('/quotation_create', function() use ($app) {
     }
 
     $quotations = ORM::for_table('quotation')->order_by_asc('quotation_id')->find_many();
-    $last_quotation = array_pop($quotations);
-    $latest_id = $last_quotation->quotation_id + 1;
+
+    $latest_id = 1;
+    if ($quotations) {
+        $last_quotation = array_pop($quotations);
+        $latest_id = $last_quotation->quotation_id +1;
+    }
+
     $data = array(
         'quotation_name'          => '報價單編號',
         'quotation_contact_name'  => '聯絡人',
