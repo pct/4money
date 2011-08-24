@@ -1,4 +1,8 @@
 $(function() {
+    $('#print').click(function() {
+        $('#main').height('');
+        window.print();
+    });
     $.count_prices = function() {
         var sub_total_price = 0;
         var vat = 0.05;

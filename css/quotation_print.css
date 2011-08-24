@@ -1,7 +1,6 @@
-#header, #secondary_bar, #sidebar, article header, .action, tfoot, footer, input[type="submit"] {
+#header, #secondary_bar, #sidebar, article header, .action, tfoot, footer, input[type="submit"], .print {
     display:none;
 }
-
 * {
     background-color: white !important;
     background-image: none !important;
@@ -90,8 +89,7 @@
     font-size: 16px;
     text-align: right;
     border: 0px;
-    margin-left: 40px;
-    margin-top: 140px;
+    margin: 140px 5px 5px 5px;
 }
 .quotation .item_price, .quotation .item_quantity, .quotation .item_sub_total {
     text-align: right;

@@ -50,7 +50,7 @@ FAQ
 
 2. Q: Where can I print my quotation?
    
-   A: Both at **create quotation** and **view quotation**, you could just use system print hot key.
+   A: Please access **view quotation** from quotation list, you could also use system print hot key.
 
 3. Q: How to use nginx without apache .htaccess?
    
