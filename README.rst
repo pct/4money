@@ -18,6 +18,7 @@ Requirement
 #. php 5.3
 #. mysql 5
 #. apache2 or nginx with url rewrite
+#. wkhtmltopdf http://code.google.com/p/wkhtmltopdf/ if you want to download quotation pdf files without using system print.
 
 Install
 ---------
