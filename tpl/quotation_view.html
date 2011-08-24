@@ -3,9 +3,9 @@
 {% block head %}
 {% include '_header.html' %}
 {% include '_form_head.html' %}
-<link rel="stylesheet" href="{{doc_root}}/css/quotation_view.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="{{doc_root}}/css/quotation_print.css" type="text/css" media="print" />
-<script type="text/javascript" src="{{doc_root}}/js/quotation_view.js"></script>
+<link rel="stylesheet" href="{{full_doc_root}}/css/quotation_view.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="{{full_doc_root}}/css/quotation_print.css" type="text/css" media="print" />
+<script type="text/javascript" src="{{full_doc_root}}/js/quotation_view.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,11 +16,12 @@
     </header>
     <div class="module_content quotation">
         <div class="print">
-            <a id="print">列印報價單</a>
+            <a id="print">列印報價單</a> | 
+            <a id="pdf" href="{{full_doc_root}}/quotation_download_pdf/{{quotation.quotation_id}}" target="_blank">下載 PDF</a>
         </div>
         <div class="company">
             <div id="my_company_logo">
-                <img src="{{doc_root}}/logo.png" alt="my company logo" />
+                <img src="{{full_doc_root}}/logo.png" alt="my company logo" />
             </div>
             <p id="company_name">{{quotation.company_name}}</p>
             <p id="company_info">{{quotation.company_info|nl2br}}</p>

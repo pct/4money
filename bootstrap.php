@@ -6,6 +6,7 @@ require 'lib/idiorm.php';
 require 'config.php';
 
 define('PROJECT_PATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+define('WKHTMLTOPDF_BIN_PATH', $WKHTMLTOPDF_BIN_PATH);
 
 ORM::configure("mysql:dbname=$DB_NAME;host=$DB_HOST");
 ORM::configure('username', $DB_USER);

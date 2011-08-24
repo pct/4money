@@ -95,6 +95,41 @@ $app->get('/quotation_view/:id', function($id) use ($app) {
     $app->render('quotation_view.html', $data);
 });
 
+$app->get('/quotation_download_pdf/:id', function($id) use ($app) {
+    require 'lib/Wkhtmltopdf.php';
+
+    $option_keys = array(
+        'company_fax',
+    );
+
+    $options = array();
+    foreach ($option_keys as $ok) {
+        $tmp = ORM::for_table('option')->where('option_key', $ok)->find_one();
+        $options[$ok] = ($tmp) ? $tmp->option_value : '';
+    }
+    $quotation = ORM::for_table('quotation')->find_one($id);
+
+    if (!$quotation) {
+        $app->redirect('quotation_list');
+        exit;    
+    } 
+
+    $url = $app->config('full_doc_root').'/quotation_view/'.$id;
+    $html = file_get_contents($url);
+
+    try {
+        $wkhtmltopdf = new Wkhtmltopdf(array(
+            'path' => PROJECT_PATH . '/pdf/', 
+            'binpath'=> WKHTMLTOPDF_BIN_PATH
+        ));
+        $wkhtmltopdf->setTitle($quotation->quotation_name);
+        $wkhtmltopdf->setHtml($html);
+        $wkhtmltopdf->output(Wkhtmltopdf::MODE_DOWNLOAD, $quotation->quotation_name.'.pdf');
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+});
+
 $app->get('/quotation_status_update/:id', function($id) use ($app) {
     $quotation_status_words = array(
         'confirmed' => '訂單確認',
@@ -161,7 +196,6 @@ $app->post('/ajax_save_quotations', function() use ($app) {
     }
 });
 
-
 $app->post('/ajax_update_quotation_status', function() use ($app) {
     $data = array(
         'class' => 'error',
@@ -169,7 +203,7 @@ $app->post('/ajax_update_quotation_status', function() use ($app) {
     );
 
     $post = $app->request()->post();
-    
+
     if ($post && intval($post['id'])) {
         $id = $post['id'];
         $quotation = ORM::for_table('quotation')->find_one($id);

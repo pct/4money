@@ -7,11 +7,11 @@ Screenshot
 ----------
 Home
 
-.. image:: https://github.com/pct/4money/raw/master/4money_screenshot.png
+.. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot.png
 
 Quotation
 
-.. image:: https://github.com/pct/4money/raw/master/4money_screenshot2.png
+.. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot2.png
 
 Requirement 
 ------------
