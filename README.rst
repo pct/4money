@@ -6,6 +6,7 @@
 Screenshot
 ----------
 .. image:: https://github.com/pct/4money/raw/master/4money_screenshot.png
+.. image:: https://github.com/pct/4money/raw/master/4money_screenshot2.png
 
 Requirement 
 ------------
@@ -39,13 +40,26 @@ Thanks for these libraries
 FAQ
 ----
 #. Q: Is 4money secure enough?
-A::
-   It is NOT safe when you have bad guys at your place. 
+
+A: It is NOT safe when you have bad guys at your place. 
+
    It has been quick developed(in less than a week), but it's enough for simple use at private network.
 
 #. Q: Where can I print my quotation?
-A::
-    Both at "create quotation" and "view quotation", you could just use system print hot key.
+
+A: Both at **create quotation** and **view quotation**, you could just use system print hot key.
+
+#. Q: How to use nginx without apache .htaccess?
+
+A: Use this in your nginx.conf::
+
+    if (!-f $request_filename){
+        set $rule_0 1$rule_0;
+    }
+
+    if ($rule_0 = "1"){
+        rewrite ^/(.*)$ /bootstrap.php last;
+    }
 
 License
 -------
@@ -90,3 +104,19 @@ License in zh-TW / 授權條款 (中文)
     中斷等等），不負任何責任，即在該種使用已獲事前告知可能會造成此類損害
     的情形下亦然。
 
+Todos
+-----
+
+#. PDF download (If you have no PDF creator, you'll need it.)
+#. Customers Manage
+
+Changelog
+----------
+
+v0.1.1::
+
+    FIX: create quotation if no quotation in it
+
+v0.1::
+
+    Project Init
