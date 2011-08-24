@@ -5,7 +5,12 @@
 
 Screenshot
 ----------
+Home
+
 .. image:: https://github.com/pct/4money/raw/master/4money_screenshot.png
+
+Quotation
+
 .. image:: https://github.com/pct/4money/raw/master/4money_screenshot2.png
 
 Requirement 
@@ -39,19 +44,17 @@ Thanks for these libraries
 
 FAQ
 ----
-#. Q: Is 4money secure enough?
+1. Q: Is 4money secure enough?
+   
+   A: It is NOT safe when you have bad guys at your place. It has been quick developed(in less than a week), but it's enough for simple use at private network.
 
-A: It is NOT safe when you have bad guys at your place. 
+2. Q: Where can I print my quotation?
+   
+   A: Both at **create quotation** and **view quotation**, you could just use system print hot key.
 
-   It has been quick developed(in less than a week), but it's enough for simple use at private network.
-
-#. Q: Where can I print my quotation?
-
-A: Both at **create quotation** and **view quotation**, you could just use system print hot key.
-
-#. Q: How to use nginx without apache .htaccess?
-
-A: Use this in your nginx.conf::
+3. Q: How to use nginx without apache .htaccess?
+   
+   A: Use this in your nginx.conf::
 
     if (!-f $request_filename){
         set $rule_0 1$rule_0;
