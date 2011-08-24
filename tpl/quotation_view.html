@@ -16,9 +16,12 @@
     </header>
     <div class="module_content quotation">
         <div class="print">
-            <a id="print">列印報價單</a> | 
-            <a id="pdf" href="{{full_doc_root}}/quotation_download_pdf/{{quotation.quotation_id}}" target="_blank">下載 PDF</a>
+            <a id="print">列印報價單</a>
+            {% if pdf_enable %} | 
+            <a id="pdf" href="{{full_doc_root}}/quotation_download_pdf/{{quotation.quotation_id}}">下載 PDF</a>
+            {% endif %}
         </div>
+        <div class="clear"></div>
         <div class="company">
             <div id="my_company_logo">
                 <img src="{{full_doc_root}}/logo.png" alt="my company logo" />

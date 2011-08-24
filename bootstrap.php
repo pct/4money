@@ -5,8 +5,11 @@ require 'Slim/Views/HaangaView.php';
 require 'lib/idiorm.php';
 require 'config.php';
 
+$pdf_enable = (file_exists($WKHTMLTOPDF_BIN_PATH)) ? TRUE : FALSE;
+
 define('PROJECT_PATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
 define('WKHTMLTOPDF_BIN_PATH', $WKHTMLTOPDF_BIN_PATH);
+define('PDF_ENABLE', $pdf_enable);
 
 ORM::configure("mysql:dbname=$DB_NAME;host=$DB_HOST");
 ORM::configure('username', $DB_USER);
@@ -19,7 +22,8 @@ ORM::configure('id_column_overrides', array(
 ));
 
 $slim_settings = array(
-    'debug'              => true, # @todo set to false if on production!
+    'mode'               => 'production',
+    'debug'              => false, 
     'log.enable'         => true,
     'view'               => new HaangaView('./lib/Haanga', './tpl', './tpl_cache'),
     'templates.path'     => './tpl',

@@ -14,5 +14,6 @@ $app->config('full_doc_root', $full_doc_root);
 $app->view()->setData('curr_url', $curr_url);
 $app->view()->setData('doc_root', $doc_root);
 $app->view()->setData('full_doc_root', $full_doc_root);
+$app->view()->setData('pdf_enable', PDF_ENABLE);
 $app->view()->setData('link', '');
 ?>

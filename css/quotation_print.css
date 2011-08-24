@@ -1,9 +1,11 @@
 #header, #secondary_bar, #sidebar, article header, .action, tfoot, footer, input[type="submit"], .print {
     display:none;
 }
-* {
-    background-color: white !important;
-    background-image: none !important;
+body {
+    width:840px;
+}
+#main {
+    height:0px !important;
 }
 .quotation input[type="text"], .quotation textarea {
     width:780px;

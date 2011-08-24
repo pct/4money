@@ -110,7 +110,7 @@ $app->get('/quotation_download_pdf/:id', function($id) use ($app) {
     $quotation = ORM::for_table('quotation')->find_one($id);
 
     if (!$quotation) {
-        $app->redirect('quotation_list');
+        $app->redirect('/quotation_list');
         exit;    
     } 
 
@@ -126,7 +126,7 @@ $app->get('/quotation_download_pdf/:id', function($id) use ($app) {
         $wkhtmltopdf->setHtml($html);
         $wkhtmltopdf->output(Wkhtmltopdf::MODE_DOWNLOAD, $quotation->quotation_name.'.pdf');
     } catch (Exception $e) {
-        echo $e->getMessage();
+        $app->notFound();
     }
 });
 

@@ -29,7 +29,7 @@ Install
 
 #. Let logs can be written by www user::
 
-    # chown -R www:www logs tpl_cache
+    # chown -R www:www logs tpl_cache pdf
 
 #. Enable apache rewrite.
 
@@ -111,11 +111,13 @@ License in zh-TW / 授權條款 (中文)
 Todos
 -----
 
-#. PDF download (If you have no PDF creator, you'll need it.)
 #. Customers Manage
 
 Changelog
 ----------
+v0.1.2::
+
+    NEW: add PDF download
 
 v0.1.1::
 
