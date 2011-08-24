@@ -9,13 +9,13 @@ Home
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot.png
 
-Quotation
-
-.. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot2.png
-
 Print
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot3.png
+
+Quotation
+
+.. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot2.png
 
 Requirement 
 ------------
