@@ -52,8 +52,8 @@ $(function() {
         $('.item_price').not(':input[name=items_price]').each(function(i, el) {
             $.item_quantity = $(el).parent().parent().find('.item_quantity')[0];
             $.item_sub_total = $(el).parent().parent().find('.item_sub_total');
-            var item_quantity = (isNaN(parseInt($.item_quantity.value))) ? 0 : parseInt($.item_quantity.value);
-            var item_price = (isNaN(parseInt(el.value))) ? 0 : parseInt(el.value);
+            var item_quantity = (isNaN(parseFloat($.item_quantity.value))) ? 0 : parseFloat($.item_quantity.value);
+            var item_price = (isNaN(parseFloat(el.value))) ? 0 : parseFloat(el.value);
             var tmp_value = item_quantity * item_price;
             sub_total_price += tmp_value;
             $.item_sub_total.html(tmp_value);
