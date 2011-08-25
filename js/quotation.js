@@ -54,21 +54,21 @@ $(function() {
             $.item_sub_total = $(el).parent().parent().find('.item_sub_total');
             var item_quantity = (isNaN(parseFloat($.item_quantity.value))) ? 0 : parseFloat($.item_quantity.value);
             var item_price = (isNaN(parseFloat(el.value))) ? 0 : parseFloat(el.value);
-            var tmp_value = item_quantity * item_price;
+            var tmp_value = (item_quantity * item_price).toFixed(2);
             sub_total_price += tmp_value;
             $.item_sub_total.html(tmp_value);
         });
 
         vat_price = Math.round(sub_total_price * vat);
-        total_price = sub_total_price + vat_price;
+        total_price = (sub_total_price + vat_price);
 
-        $('#sub_total_price').html(sub_total_price);
-        $('#vat_price').html(vat_price);
-        $('#total_price').html(total_price);
+        $('#sub_total_price').html(sub_total_price.toFixed(2));
+        $('#vat_price').html(vat_price.toFixed(2));
+        $('#total_price').html(total_price.toFixed(2));
 
-        $(':input[name=sub_total_price]').val(sub_total_price);
-        $(':input[name=vat_price]').val(vat_price);
-        $(':input[name=total_price]').val(total_price);
+        $(':input[name=sub_total_price]').val(sub_total_price.toFixed(2));
+        $(':input[name=vat_price]').val(vat_price.toFixed(2));
+        $(':input[name=total_price]').val(total_price.toFixed(2));
     }
 
     // 啟動時先算第一次
