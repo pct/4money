@@ -125,6 +125,11 @@ Todos
 
 Changelog
 ----------
+v0.1.3::
+
+    NEW: use parseFloat and you could use in item_price and item_quantity
+    FIX: full_doc_root, then you could install 4money in subdir of your webroot.
+
 v0.1.2::
 
     NEW: add PDF download
