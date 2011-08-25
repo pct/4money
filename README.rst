@@ -125,6 +125,10 @@ Todos
 
 Changelog
 ----------
+v0.1.4::
+
+    FIX: parseFloat with toFixed(2) 
+
 v0.1.3::
 
     NEW: use parseFloat and you could use in item_price and item_quantity
