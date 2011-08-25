@@ -69,6 +69,12 @@ FAQ
         rewrite ^/(.*)$ /bootstrap.php last;
     }
 
+4. Q: I installed wkhtmltopdf, and changed $WKHTMLTOPDF_BIN_PATH in config.php, but I could not see the download PDF link?
+
+   A: check if your `which wkhtmltopdf` path is in php.ini open_basedir, or the better way, change the bootstrap.php PDF_ENABLE to always TRUE::
+
+    define('PDF_ENABLE', true);
+
 License
 -------
 http://www.opensource.org/licenses/bsd-license.php
