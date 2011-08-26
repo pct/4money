@@ -1,4 +1,29 @@
 <?php
+
+// option app hook 
+$app->hook('get_options', function($option_keys) {
+    $options = array();
+
+    foreach ($option_keys as $ok) {
+        $tmp = ORM::for_table('option')->where('option_key', $ok)->find_one();
+        $options[$ok] = ($tmp) ? $tmp->option_value : '';
+    }
+
+    return $options;
+});
+
+$app->hook('render_option_defaut_value', function($data_keys) {
+    $data = array();
+
+    foreach ($data_keys as $k => $v) {
+        $tmp = ORM::for_table('option')->where('option_key', $k)->find_one();
+        $data[$k] = ($tmp) ? $tmp->option_value : '請輸入'.$v;
+    }
+
+    return $data;
+});
+
+// option CRUD
 $app->get('/company_options', function() use ($app) {
     $data_keys = array(
         'company_name'     => '公司名稱',
@@ -10,11 +35,9 @@ $app->get('/company_options', function() use ($app) {
         'company_username' => '預設聯絡人',
         'breadcrumb_title' => '公司資料',
     );
-    $data = array();
-    foreach ($data_keys as $k => $v) {
-        $tmp = ORM::for_table('option')->where('option_key', $k)->find_one();
-        $data[$k] = ($tmp) ? $tmp->option_value : '請輸入'.$v;
-    }
+
+    $data = $app->applyHook('render_option_defaut_value', $data_keys);
+
     $app->render('company_options.html', $data);
 });
 
@@ -26,11 +49,9 @@ $app->get('/bank_options', function() use ($app) {
         'bank_account'       => '帳號',
         'breadcrumb_title'   => '銀行帳戶',
     );
-    $data = array();
-    foreach ($data_keys as $k => $v) {
-        $tmp = ORM::for_table('option')->where('option_key', $k)->find_one();
-        $data[$k] = ($tmp) ? $tmp->option_value : '請輸入'.$v;
-    }
+
+    $data = $app->applyHook('render_option_defaut_value', $data_keys);
+
     $app->render('bank_options.html', $data);
 });
 
@@ -39,11 +60,9 @@ $app->get('/advance_options', function() use ($app) {
         'quotation_id_prefix' => '報價單前綴編號或文字',
         'breadcrumb_title'    => '進階設定',
     );
-    $data = array();
-    foreach ($data_keys as $k => $v) {
-        $tmp = ORM::for_table('option')->where('option_key', $k)->find_one();
-        $data[$k] = ($tmp) ? $tmp->option_value : '請輸入'.$v;
-    }
+
+    $data = $app->applyHook('render_option_defaut_value', $data_keys);
+
     $app->render('advance_options.html', $data);
 });
 

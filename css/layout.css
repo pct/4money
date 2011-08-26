@@ -887,15 +887,7 @@ footer {margin-left:40px;text-align:center;color:#999;}
 #sidebar h3 {
 padding-bottom: 10px;
 border-bottom: 1px solid #aaa;}
-#main-nav .current {
-background: #E2F6C5 url(../images/btn_submit.png) no-repeat;
-}
-#main-nav li {
-    padding-left:20px;
-}
-.site_title a img {
-    margin-top: 5px;
-}
-#sidebar {
-    height: 100%;
-}
+#main-nav .current {background: #E2F6C5 url(../images/btn_submit.png) no-repeat;}
+#main-nav li {padding-left:20px;}
+.site_title a img {margin-top: 5px;}
+#sidebar {height: 100%;}

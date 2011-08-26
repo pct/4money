@@ -22,6 +22,6 @@
 $(function() {
     var curr_url = '{{curr_url}}';
     $('#main-nav ul li').removeClass('current');
-    $('#main-nav ul li a').filter(function(index) {return $(this).attr('href') == curr_url.replace('/', '');}).parent().addClass('current');
+    $('#main-nav ul li a').filter(function(index) {return $(this).attr('href').replace('{{doc_root}}/','') == curr_url.replace('/', '');}).parent().addClass('current');
 });
 </script>

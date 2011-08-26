@@ -12,7 +12,7 @@
 
 <article class="module width_full">
     <header>
-        <h3>建立報價單</h3>
+        <h3>修改報價單</h3>
     </header>
     <div class="module_content quotation">
         <form id="_form" method="post">
@@ -20,28 +20,16 @@
                 <div id="my_company_logo">
                     <img src="{{doc_root}}/logo.png" alt="my company logo" />
                 </div>
-                <textarea class="required" id="company_name" name="company_name">{{company_name}} - 報價單</textarea>
-                <textarea class="required" id="company_info" name="company_info">
-{{company_name}}
-地址：{{company_addr}}
-電話：{{company_phone}}
-{% if company_fax %}傳真：{{company_fax}}{% endif %}
-統編：{{company_id}}
-                </textarea>
+                <textarea class="required" id="company_name" name="company_name">{{quotation.company_name}}</textarea>
+                <textarea class="required" id="company_info" name="company_info">{{quotation.company_info}}</textarea>
             </div>
             <div>
-                <input type="text" class="required" id="quotation_name" name="quotation_name" value="{{quotation_name}} {{quotation_id_prefix}}{{latest_id}}" />
+                <input type="text" class="required" id="quotation_name" name="quotation_name" value="{{quotation.quotation_name}}" />
             </div>
             <hr />
             <div class="company">
-                <textarea class="required" id="customer_info" name="customer_info">客戶資料</textarea>
-                <textarea class="required" id="company_contact" name="company_contact">
-{{company_name}} 
-聯絡人：{{company_username}}
-電話：{{company_phone}}
-Email：{{company_email}}
-日期：{{today}}
-                </textarea>
+                <textarea class="required" id="customer_info" name="customer_info">{{quotation.customer_info}}</textarea>
+                <textarea class="required" id="company_contact" name="company_contact">{{quotation.company_contact}}</textarea>
             </div>
             <div class="clear"></div>
             <div id="item_list">
@@ -57,26 +45,28 @@ Email：{{company_email}}
                         </tr>
                     </thead>
                     <tbody>
+                        {% for item in quotation_items %}
                         <tr>
                             <td>
-                                <input type="text" name="items[0][desc]" />
+                                <input type="text" name="items[0][desc]" value="{{item.desc}}" />
                             </td>
                             <td>
-                                <input type="text" name="items[0][quantity]" class="item_quantity" />
+                                <input type="text" name="items[0][quantity]" class="item_quantity" value="{{item.quantity}}" />
                             </td>
                             <td>
-                                <input type="text" name="items[0][price]" class="item_price" />
+                                <input type="text" name="items[0][price]" class="item_price" value="{{item.price}}" />
                             </td>
                             <td>
                                 <span class="item_sub_total">&nbsp;</span>
                             </td>
                             <td>
-                                <input type="text" name="items[0][notes]" />
+                                <input type="text" name="items[0][notes]" value="{{item.notes}}" />
                             </td>
                             <td class="action">
                                 <a class="remove_item button"><span class="cross icon"></span>刪除</a>
                             </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr>
@@ -114,43 +104,37 @@ Email：{{company_email}}
                 <table cellspacing="0" cellpadding="0">
                     <tr>
                         <th>小計</th>
-                        <td id="sub_total_price">&nbsp;</td>
+                        <td id="sub_total_price">{{quotation.sub_total_price}}&nbsp;</td>
                     </tr>
                     <tr>
                         <th>稅金 (5%)</th>
-                        <td id="vat_price">&nbsp;</td>
+                        <td id="vat_price">{{quotation.vat_price}}&nbsp;</td>
                     </tr>
                     <tr>
                         <th>總計</th>
-                        <td id="total_price">&nbsp;</td>
+                        <td id="total_price">{{quotation.total_price}}&nbsp;</td>
                     </tr>
                 </table>
             </div>
             <div>
-                <textarea id="customer_notes" name="customer_notes">補充說明或合約</textarea>
+                <textarea id="customer_notes" name="customer_notes">{{quotation.customer_notes}}</textarea>
             </div>
             <div class="company">
                 <hr />
-                <textarea id="bank_info" name="bank_info">
-付款方式：
-戶名：{{bank_company_title}}
-銀行：{{bank_name}}
-代碼：{{bank_code}}
-帳號：{{bank_account}}
-                </textarea>
+                <textarea id="bank_info" name="bank_info">{{quotation.bank_info}}</textarea>
                 <hr />
             </div>
             <div id="confirm">
                 <div id="confirm_notes">&nbsp;確認訂單(請在此處簽名並蓋公司用印)</div>
                 {% if company_fax %}
-                <div id="fax">簽名蓋章後請傳真回 {{company_fax}}，謝謝！</div>
+                <div id="fax">簽名蓋章後請傳真回 {{quotation.company_fax}}，謝謝！</div>
                 {% endif %}
             </div>
             <div class="clear"></div>
-            <input type="hidden" name="sub_total_price" value="" />
-            <input type="hidden" name="vat_price" value="" />
-            <input type="hidden" name="total_price" value="" />
-            <input type="submit" value="建立報價單" />
+            <input type="hidden" name="sub_total_price" value="{{quotation.sub_total_price}}" />
+            <input type="hidden" name="vat_price" value="{{quotation.vat_price}}" />
+            <input type="hidden" name="total_price" value="{{quotation.total_price}}" />
+            <input type="submit" value="修改報價單" />
         </form>
     </div>
 </article>

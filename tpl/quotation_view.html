@@ -16,9 +16,9 @@
     </header>
     <div class="module_content quotation">
         <div class="print">
-            <a id="print">列印報價單</a>
-            {% if pdf_enable %} | 
-            <a id="pdf" href="{{full_doc_root}}/quotation_download_pdf/{{quotation.quotation_id}}">下載 PDF</a>
+            <a id="print" class="big button"><span class="icon"></span>列印報價單</a>
+            {% if pdf_enable %} 
+            <a id="pdf" class="big button" href="{{full_doc_root}}/quotation_download_pdf/{{quotation.quotation_id}}"><span class="downarrow icon"></span>下載 PDF</a>
             {% endif %}
         </div>
         <div class="clear"></div>
@@ -26,7 +26,7 @@
             <div id="my_company_logo">
                 <img src="{{full_doc_root}}/logo.png" alt="my company logo" />
             </div>
-            <p id="company_name">{{quotation.company_name}}</p>
+            <p id="company_name">{{quotation.company_name|nl2br}}</p>
             <p id="company_info">{{quotation.company_info|nl2br}}</p>
         </div>
         <div class="clear"></div>

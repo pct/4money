@@ -1,4 +1,17 @@
 <?php
+
+// quotation app hooks
+$app->hook('check_quotation_exists', function($quotation_id) {
+    $quotation = ORM::for_table('quotation')->find_one($quotation_id);
+
+    if (!$quotation) {
+        $app->redirect('/quotation_list');
+        exit;    
+    }
+    return $quotation; 
+});
+
+// quotation CRUD
 $app->get('/quotation_create', function() use ($app) {
     $option_keys = array(
         'company_name', 
@@ -15,11 +28,7 @@ $app->get('/quotation_create', function() use ($app) {
         'quotation_id_prefix'
     );
 
-    $options = array();
-    foreach ($option_keys as $ok) {
-        $tmp = ORM::for_table('option')->where('option_key', $ok)->find_one();
-        $options[$ok] = ($tmp) ? $tmp->option_value : '';
-    }
+    $options = $app->applyHook('get_options', $option_keys);
 
     $quotations = ORM::for_table('quotation')->order_by_asc('quotation_id')->find_many();
 
@@ -49,8 +58,28 @@ $app->get('/quotation_create', function() use ($app) {
     $app->render('quotation_create.html', $data);
 });
 
+$app->get('/quotation_edit/:id', function($id) use ($app) {
+    $option_keys = array(
+        'company_fax',
+    );
+
+    $options = $app->applyHook('get_options', $option_keys);
+    $quotation = $app->applyHook('check_quotation_exists', $id);
+    $quotation_items = unserialize($quotation->items);
+
+    $data = array(
+        'breadcrumb_title' => '編輯報價單',
+        'quotation'        => $quotation,
+        'quotation_items'  => $quotation_items,
+    );
+
+    $data = array_merge($data, $options);
+    $app->render('quotation_edit.html', $data);
+});
+
 $app->get('/quotation_list', function() use ($app) {
-    $quotations = ORM::for_table('quotation')->find_many();
+    $quotations = ORM::for_table('quotation')->order_by_desc('quotation_id')->find_many();
+
     $quotation_status_words = array(
         'confirmed' => '訂單確認',
         'canceled'   => '取消',
@@ -71,17 +100,8 @@ $app->get('/quotation_view/:id', function($id) use ($app) {
         'company_fax',
     );
 
-    $options = array();
-    foreach ($option_keys as $ok) {
-        $tmp = ORM::for_table('option')->where('option_key', $ok)->find_one();
-        $options[$ok] = ($tmp) ? $tmp->option_value : '';
-    }
-    $quotation = ORM::for_table('quotation')->find_one($id);
-
-    if (!$quotation) {
-        $app->redirect('quotation_list');
-        exit;    
-    } 
+    $options = $app->applyHook('get_options', $option_keys);
+    $quotation = $app->applyHook('check_quotation_exists', $id);
 
     $quotation_items = unserialize($quotation->items);
 
@@ -102,17 +122,8 @@ $app->get('/quotation_download_pdf/:id', function($id) use ($app) {
         'company_fax',
     );
 
-    $options = array();
-    foreach ($option_keys as $ok) {
-        $tmp = ORM::for_table('option')->where('option_key', $ok)->find_one();
-        $options[$ok] = ($tmp) ? $tmp->option_value : '';
-    }
-    $quotation = ORM::for_table('quotation')->find_one($id);
-
-    if (!$quotation) {
-        $app->redirect('/quotation_list');
-        exit;    
-    } 
+    $options = $app->applyHook('get_options', $option_keys);
+    $quotation = $app->applyHook('check_quotation_exists', $id);
 
     $url = $app->config('full_doc_root').'/quotation_view/'.$id;
     $html = file_get_contents($url);
@@ -138,12 +149,7 @@ $app->get('/quotation_status_update/:id', function($id) use ($app) {
         'wait'      => '待回應'
     );
 
-    $quotation = ORM::for_table('quotation')->find_one($id);
-
-    if (!$quotation) {
-        $app->redirect('quotation_list');
-        exit;    
-    } 
+    $quotation = $app->applyHook('check_quotation_exists', $id);
 
     $quotation_items = unserialize($quotation->items);
 
