@@ -16,6 +16,7 @@
     </header>
     <div class="module_content quotation">
         <form id="_form" method="post">
+            <input type="hidden" name="quotation_id" value="{{quotation.quotation_id}}" />
             <div class="company">
                 <div id="my_company_logo">
                     <img src="{{doc_root}}/logo.png" alt="my company logo" />
@@ -45,24 +46,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in quotation_items %}
+                        {% for key, item in quotation_items %}
                         <tr>
                             <td>
-                                <input type="text" name="items[0][desc]" value="{{item.desc}}" />
+                                <input type="text" rel="{{key}}" name="items[{{key}}][desc]" value="{{item.desc}}" />
                             </td>
                             <td>
-                                <input type="text" name="items[0][quantity]" class="item_quantity" value="{{item.quantity}}" />
+                                <input type="text" rel="{{key}}" name="items[{{key}}][quantity]" class="item_quantity" value="{{item.quantity}}" />
                             </td>
                             <td>
-                                <input type="text" name="items[0][price]" class="item_price" value="{{item.price}}" />
+                                <input type="text" rel="{{key}}" name="items[{{key}}][price]" class="item_price" value="{{item.price}}" />
                             </td>
                             <td>
                                 <span class="item_sub_total">&nbsp;</span>
                             </td>
                             <td>
-                                <input type="text" name="items[0][notes]" value="{{item.notes}}" />
+                                <input type="text" rel="{{key}}" name="items[{{key}}][notes]" value="{{item.notes}}" />
                             </td>
-                            <td class="action">
+                            <td class="action" rel="{{key}}">
                                 <a class="remove_item button"><span class="cross icon"></span>刪除</a>
                             </td>
                         </tr>
@@ -141,4 +142,16 @@
 
 <div id="show_notice" style="display:none;"></div>
 
+<script type="text/javascript">
+    $('#_form').validate({
+        submitHandler: function() {
+            $.post('{{doc_root}}/ajax_save_quotations', $('#_form').serialize(), function(data) {
+                $('#show_notice').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
+            });
+            return false;
+        }
+    });
+</script>
 {% endblock %}

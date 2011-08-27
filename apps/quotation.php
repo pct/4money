@@ -179,23 +179,31 @@ $app->post('/ajax_save_quotations', function() use ($app) {
     $post = $app->request()->post();
 
     if ($post) {
-        $quotation = ORM::for_table('quotation')->create();
+        $wording = (isset($post['quotation_id'])) ? '更新' : '建立';
+
+        $quotation = (isset($post['quotation_id'])) ? 
+            ORM::for_table('quotation')->find_one($post['quotation_id']) : 
+            ORM::for_table('quotation')->create();
+
         foreach ($quotation_keys as $key) {
             $quotation->$key = $post[$key];
         }
+
         $quotation->items = serialize($post['items']);
+
         $ret = $quotation->save();
+
         if ($ret) {
             $data = array(
                 'class' => 'success',
-                'msg'   => '報價單建立成功！',
+                'msg'   => '報價單'.$wording.'成功！',
                 'link'  => 'quotation_list',
                 'link_msg' => '到列表查看'
             );
         } else {
             $data = array(
                 'class' => 'error',
-                'msg'   => '報價單建立失敗，請重試！'
+                'msg'   => '報價單'.$wording.'失敗，請重試！'
             );
         }
         $app->render('_notice.html', $data);

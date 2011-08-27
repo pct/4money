@@ -2,17 +2,11 @@ $(function() {
     // item 數量
     $.item_num = 1;
 
-    // form
-    $('#_form').validate({
-        submitHandler: function() {
-            $.post('ajax_save_quotations', $('#_form').serialize(), function(data) {
-                $('#show_notice').html(data).fadeIn('slow', function() {
-                    $.equal_height();
-                });
-            });
-            return false;
-        }
-    });
+    // if quotation_edit 
+    $.is_match = location.href.match(/quotation_edit/);
+    if ($.is_match) {
+        $.item_num = parseInt($('#item_table tbody tr td:last').attr('rel')) + 1;
+    }
 
     // bind add_item
     $('#add_item').click(function() {
