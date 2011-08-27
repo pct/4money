@@ -5,9 +5,14 @@
 
 Screenshot
 ----------
+
 Home
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot.png
+
+Quotation List
+
+.. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot4.png
 
 Print
 
