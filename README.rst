@@ -130,6 +130,11 @@ Todos
 
 Changelog
 ----------
+v0.1.5::
+
+    NEW: edit quotation
+    NEW: use css3 button to replace link
+
 v0.1.4::
 
     FIX: parseFloat with toFixed(2) 
