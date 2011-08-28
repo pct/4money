@@ -3,8 +3,10 @@
 {% block head %}
 {% include '_header.html' %}
 {% include '_form_head.html' %}
+<link rel="stylesheet" href="{{doc_root}}/css/colorbox.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="{{doc_root}}/css/quotation.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="{{doc_root}}/css/quotation_print.css" type="text/css" media="print" />
+<script type="text/javascript" src="{{doc_root}}/js/jquery.colorbox.js"></script>
 <script type="text/javascript" src="{{doc_root}}/js/quotation.js"></script>
 {% endblock %}
 
@@ -34,6 +36,9 @@
             </div>
             <hr />
             <div class="company">
+                <div>
+                    <a id="insert_customer_data" class="button" href="{{doc_root}}/modal_customer_list"><span class="user icon"></span>代入客戶資料</a>
+                </div>
                 <textarea class="required" id="customer_info" name="customer_info">客戶資料</textarea>
                 <textarea class="required" id="company_contact" name="company_contact">
 {{company_name}} 
@@ -168,5 +173,7 @@ Email：{{company_email}}
             return false;
         }
     });
+
+    $('#insert_customer_data').colorbox();
 </script>
 {% endblock %}

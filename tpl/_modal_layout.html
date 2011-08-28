@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        <section id="main" class="column">
+            <div id="main_content">
+                {% include '_no_script.html' %}
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
+    </body>
+</html>

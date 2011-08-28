@@ -79,6 +79,16 @@ $app->get('/customer_delete/:id', function($id) use ($app) {
     $app->render('customer_delete.html', $data);
 });
 
+$app->get('/modal_customer_list', function() use ($app) {
+    $customers = ORM::for_table('customer')->order_by_desc('customer_id')->find_many();
+
+    $data = array(
+        'breadcrumb_title' => '客戶資料',
+        'customers'        => $customers,
+    );
+    $app->render('modal_customer_list.html', $data);
+});
+
 $app->post('/ajax_save_customer', function() use ($app) {
     $post = $app->request()->post();
 

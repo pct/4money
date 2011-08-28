@@ -1,0 +1,49 @@
+{% extends '_modal_layout.html' %}
+{% block head %}
+<meta charset="utf-8"/>
+<title>4money</title>
+<link rel="stylesheet" href="{{full_doc_root}}/css/css3buttons.css" type="text/css" media="screen" />
+<script type="text/javascript" src="{{full_doc_root}}/js/jquery.js"></script>
+{% include '_list_header.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>{{breadcrumb_title}}</h3>
+    </header>
+    <div class="module_content">
+        <table id="customer_list_table" cellpadding="0" cellspacing="0" border="0" class="display">
+            <thead>
+                <tr>
+                    <th>公司名稱</th>
+                    <th>公司統編</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{customer.customer_name}}</td>
+                    <td>{{customer.customer_uid|default:'-'}}</td>
+                    <td nowrap>
+                        <a class="button insert_this_customer"><span class="pen icon"></span>代入這家</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</article>
+
+<script type="text/javascript">
+$(function() {
+    $('#customer_list_table').dataTable({"bJQueryUI": true, "bAutoWidth": true, "sPaginationType": "full_numbers", "oLanguage":{
+        "sUrl": "js/datatables_tw.txt"
+        }
+    });
+});
+</script>
+
+{% endblock %}

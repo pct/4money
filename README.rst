@@ -130,7 +130,7 @@ License in zh-TW / 授權條款 (中文)
 Todos
 -----
 
-#. Customers Manage
+None. Please tell me your ideas, thanks!
 
 Changelog
 ----------
