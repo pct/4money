@@ -23,7 +23,7 @@ ORM::configure('id_column_overrides', array(
 
 $slim_settings = array(
     'mode'               => 'production',
-    'debug'              => false, 
+    'debug'              => true, 
     'log.enable'         => true,
     'view'               => new HaangaView('./lib/Haanga', './tpl', './tpl_cache'),
     'templates.path'     => './tpl',

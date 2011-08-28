@@ -1,0 +1,65 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_list_header.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>{{breadcrumb_title}}</h3>
+    </header>
+    <div class="module_content">
+        <table id="customer_list_table" cellpadding="0" cellspacing="0" border="0" class="display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>公司名稱</th>
+                    <th>發票抬頭</th>
+                    <th>公司統編</th>
+                    <th>公司地址</th>
+                    <th>發票地址</th>
+                    <th>公司電話</th>
+                    <th>公司傳真</th>
+                    <th>聯絡人</th>
+                    <th>聯絡人電話</th>
+                    <th>聯絡人 Email</th>
+                    <th>備註</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{customer.customer_name}}</td>
+                    <td>{{customer.invoice_title|default:'-'}}</td>
+                    <td>{{customer.customer_uid|default:'-'}}</td>
+                    <td>{{customer.customer_addr|default:'-'}}</td>
+                    <td>{{customer.invoice_addr|default:'-'}}</td>
+                    <td>{{customer.customer_phone|default:'-'}}</td>
+                    <td>{{customer.customer_fax|default:'-'}}</td>
+                    <td>{{customer.contact_name|default:'-'}}</td>
+                    <td>{{customer.contact_phone|default:'-'}}</td>
+                    <td>{{customer.contact_email|default:'-'}}</td>
+                    <td>{{customer.customer_notes|default:'-'|nl2br}}</td>
+                    <td nowrap>
+                        <a class="middle button" href="customer_edit/{{customer.customer_id}}"><span class="pen icon"></span>編輯</a><a class="right negative button" href="customer_delete/{{customer.customer_id}}"><span class="trash icon"></span>刪除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</article>
+
+<script type="text/javascript">
+$(function() {
+    $('#customer_list_table').dataTable({"bJQueryUI": true, "iDisplayLength": 15, "aLengthMenu": [[15, 50, -1], [15, 50, "All"]], "sPaginationType": "full_numbers", "oLanguage":{
+        "sUrl": "js/datatables_tw.txt"
+        }
+    });
+});
+</script>
+
+{% endblock %}

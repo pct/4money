@@ -1,0 +1,131 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_form_head.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>{{breadcrumb_title}}</h3>
+    </header>
+    <div class="module_content">
+        <form id="_form" class="wufoo">
+            <input type="hidden" name="customer_id" value="{{customer.customer_id}}" />
+            <ul>
+                <li>
+                    <label class="desc" for="customer_name">
+                        公司名稱：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.customer_name}}" name="customer_name" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="invoice_title">
+                        發票抬頭：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.invoice_title}}" name="invoice_title" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="customer_uid">
+                        公司統編：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.customer_uid}}" name="customer_uid" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="customer_addr">
+                        公司地址：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.customer_addr}}" name="customer_addr" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="invoice_addr">
+                        發票地址：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.invoice_addr}}" name="invoice_addr" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="customer_phone">
+                        公司電話：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.customer_phone}}" name="customer_phone" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="customer_fax">
+                        公司傳真：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.customer_fax}}" name="customer_fax" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="contact_name">
+                        聯絡人姓名：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.contact_name}}" name="contact_name" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="contact_phone">
+                        聯絡人電話：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.contact_phone}}" name="contact_phone" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="contact_email">
+                        聯絡人 Email：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{customer.contact_email}}" name="contact_email" />
+                    </span>
+                </li>
+                <li>
+                    <label class="desc" for="customer_notes">
+                        備註：
+                    </label>
+                    <span>
+                        <textarea name="customer_notes" class="field textarea medium">{{customer.customer_notes}}</textarea>
+                    </span>
+                </li>
+            </ul>
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="更新客戶資料" />
+            </div>
+        </form>
+    </div> 
+</article>
+
+<div id="show_notice" style="display:none;"></div>
+
+<script type="text/javascript">
+$(function() {
+    $('#_form').validate({
+        submitHandler: function() {
+            $.post('{{doc_root}}/ajax_save_customer', $('#_form').serialize(), function(data) {
+                $('#show_notice').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
+            });
+            return false;
+        }
+    });
+});
+</script>
+
+{% endblock %}

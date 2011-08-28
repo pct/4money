@@ -10,11 +10,15 @@ Home
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot.png
 
+Customer List
+
+.. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot5.png
+
 Quotation List
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot4.png
 
-Print
+How to Print
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot3.png
 

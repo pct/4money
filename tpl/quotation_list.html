@@ -2,18 +2,14 @@
 
 {% block head %}
 {% include '_header.html' %}
-<link rel="stylesheet" href="{{doc_root}}/css/page.css" type="text/css" />
-<link rel="stylesheet" href="{{doc_root}}/css/table_jui.css" type="text/css" />
-<link rel="stylesheet" href="{{doc_root}}/css/flick/jquery-ui.css" type="text/css" />
-<script type="text/javascript" src="{{doc_root}}/js/jquery-ui.js"></script>
-<script type="text/javascript" src="{{doc_root}}/js/jquery.dataTables.min.js"></script>
+{% include '_list_header.html' %}
 {% endblock %}
 
 {% block content %}
 
 <article class="module width_full">
     <header>
-        <h3>報價單列表</h3>
+        <h3>{{breadcrumb_title}}</h3>
     </header>
     <div class="module_content">
         <table id="quotation_list_table" cellpadding="0" cellspacing="0" border="0" class="display" style="width:100%;">
