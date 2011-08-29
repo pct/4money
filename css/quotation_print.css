@@ -71,6 +71,7 @@ body {
 .quotation #customer_info {
     font-size: 16px;
     float: left;
+    min-height: 180px;
 }
 .quotation #company_contact {
     font-size: 16px;
