@@ -138,6 +138,10 @@ None. Please tell me your ideas, thanks!
 
 Changelog
 ----------
+v0.1.6.1::
+
+    FIX: print quotation layout fix
+
 v0.1.6::
 
     NEW: customers manage
