@@ -135,3 +135,13 @@ $app->post('/ajax_delete_customer', function() use ($app) {
         $app->render('_notice.html', $data);
     }
 });
+
+$app->get('/ajax_get_customer_data/:id', function($id) use ($app) {
+    $customer = ORM::for_table('customer')->find_one($id);
+    if ($customer) {
+        $data = array('customer' => $customer);
+        $app->render('ajax_get_customer_data.html', $data);
+    } else {
+        echo '';
+    }
+});

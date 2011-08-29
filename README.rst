@@ -22,6 +22,10 @@ How to Print
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot3.png
 
+Insert Customer Data to Quotation
+
+.. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot6.png
+
 Quotation
 
 .. image:: https://github.com/pct/4money/raw/master/images/4money_screenshot2.png
@@ -134,6 +138,12 @@ None. Please tell me your ideas, thanks!
 
 Changelog
 ----------
+v0.1.6::
+
+    NEW: customers manage
+    NEW: insert customer data button at create quotation page
+    NOTES: you should use sql/4money_v0.1.5_to_v0.1.6.sql to update your DB.
+
 v0.1.5::
 
     NEW: edit quotation
