@@ -14,6 +14,7 @@ define('PDF_ENABLE', $pdf_enable);
 ORM::configure("mysql:dbname=$DB_NAME;host=$DB_HOST");
 ORM::configure('username', $DB_USER);
 ORM::configure('password', $DB_PASS);
+ORM::configure('driver_options', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
 ORM::configure('id_column_overrides', array(
     'customer'  => 'customer_id',
