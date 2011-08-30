@@ -138,6 +138,10 @@ None. Please tell me your ideas, thanks!
 
 Changelog
 ----------
+v0.1.6.2::
+
+    FIX: Force 'SET NAMES utf-8;' in bootstrap.php
+
 v0.1.6.1::
 
     FIX: print quotation layout fix
