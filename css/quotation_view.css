@@ -136,7 +136,7 @@
 .quotation #bank_info {
     font-size: 16px;
 }
-.quotation #price_info {
+.quotation #price_info td{
     text-align:right;
 }
 .quotation .print {

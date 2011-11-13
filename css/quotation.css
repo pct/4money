@@ -95,3 +95,8 @@
     margin: 2px;
     border-bottom: 1px solid black;
 }
+
+.quotation #item_table textarea{
+	width:300px;
+	height:80px;
+}

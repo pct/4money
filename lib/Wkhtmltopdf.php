@@ -518,6 +518,7 @@ class Wkhtmltopdf
             // $command .= ' --load-error-handling ignore';
         }
         
+		$command .= ' --print-media-type';
         $command .= ' --title "' . $this->getTitle() . '"';
         $command .= ' "%input%"';
         $command .= " -";
