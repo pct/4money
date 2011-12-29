@@ -30,6 +30,11 @@ $app->get('/quotation_create', function() use ($app) {
 
     $options = $app->applyHook('get_options', $option_keys);
 
+	$k=array('%year'=>date('Y'),'%month'=>date('m'),'%day'=>date('d'),'%cyear'=>date('Y')-1911);
+	foreach($k as $key => $val){
+		$options['quotation_id_prefix']=str_replace($key,$val,$options['quotation_id_prefix']);
+	}
+
     $quotations = ORM::for_table('quotation')->order_by_asc('quotation_id')->find_many();
 
     $latest_id = 1;

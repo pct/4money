@@ -49,7 +49,7 @@
                         {% for key, item in quotation_items %}
                         <tr>
                             <td>
-                                <input type="text" rel="{{key}}" name="items[{{key}}][desc]" value="{{item.desc}}" />
+								<textarea rel="{{key}}" name="items[{{key}}][desc]">{{item.desc}}</textarea>
                             </td>
                             <td>
                                 <input type="text" rel="{{key}}" name="items[{{key}}][quantity]" class="item_quantity" value="{{item.quantity}}" />
@@ -81,7 +81,7 @@
                 <table cellspacing="0" cellpadding="0">
                     <tr id="item_tpl" style="display:none;">
                         <td>
-                            <input type="text" name="items_desc" />
+							<textarea type="text" name="items_desc"></textarea>
                         </td>
                         <td>
                             <input type="text" name="items_quantity" class="item_quantity" />
