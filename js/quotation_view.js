@@ -48,6 +48,11 @@ $(function() {
     // 啟動時先算第一次
     $.count_prices();
 
+    // 補0
+    $.pad2 = function(number) {
+        return (number < 10 ? '0' : '') + number;
+    }
+
 	$.item_id = function(){
 		var id=1;
 		$('#item_list tr').each(function(i,el){
@@ -56,7 +61,7 @@ $(function() {
 				id=1;
 				return true;
 			}
-			item_id.html(id++);
+			item_id.html($.pad2(id++));
 		});
 	}
 	$.item_id();

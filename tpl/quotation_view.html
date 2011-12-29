@@ -57,7 +57,7 @@
 						{% if item.desc|substr:"0,4" in "--- " %}
 						<td colspan="6">{{item.desc}}</td>
 						{% else %}
-						<td></td>
+						<td class="item_num"></td>
                         <td>{{item.desc|nl2br}}&nbsp;</td>
                         <td class="item_quantity">{{item.quantity}}&nbsp;</td>
                         <td class="item_price">{{item.price}}&nbsp;</td>
@@ -90,8 +90,10 @@
         </div>
         <div class="company">
             <hr />
+            {% if bank_info %}
             <p id="bank_info">{{quotation.bank_info|nl2br}}</p>
             <hr />
+            {% endif %}
         </div>
         <div id="confirm">
             <div id="confirm_notes">&nbsp;確認訂單(請在此處簽名並蓋公司用印)</div>

@@ -891,3 +891,5 @@ border-bottom: 1px solid #aaa;}
 #main-nav li {padding-left:20px;}
 .site_title a img {margin-top: 5px;}
 #sidebar {height: 100%;}
+.money,#sub_total_price,#vat_price,#total_price {text-align:right;}
+.item_num {text-align:center;}
