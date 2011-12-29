@@ -138,6 +138,11 @@ None. Please tell me your ideas, thanks!
 
 Changelog
 ----------
+v0.1.6.3::
+
+    NEW: apply pull request about money format from @nansenat16
+    FIX: some layout fix
+
 v0.1.6.2::
 
     FIX: Force 'SET NAMES utf-8;' in bootstrap.php
