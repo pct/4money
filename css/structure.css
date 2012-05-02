@@ -1,51 +1,58 @@
-/* - - - - - - - - - - - - - - - - - - - - -
-
-Title : Wufoo Form Structure
-URL : http://wufoo.com
-
-- - - - - - - - - - - - - - - - - - - - - */
-
-article, aside, figure, figure img, figcaption, hgroup,
-footer, header, nav, section, video, object, output {
-	display: block;
+.likert.cloak table {
+  border: none;
 }
-
-#container{
-	text-align:left;
-	background:#fff;
-	border:1px solid #ccc;
-	-webkit-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
-	-moz-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
-	-o-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
-	box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+article,
+aside,
+figure,
+figure img,
+figcaption,
+hgroup,
+footer,
+header,
+nav,
+section,
+video,
+object,
+output {
+  display: block;
 }
-#container, #bottom{
-	margin:0 auto;
-	width:640px;
+img,
+a img {
+  border: none;
+  -ms-interpolation-mode: bicubic;
 }
-#bottom{
-	width:650px;
-	height:10px !important;
-	margin-bottom:10px;
-	display:block !important;
+#bottom {
+  width: 650px;
+  height: 10px !important;
+  margin-bottom: 10px;
+  display: block !important;
 }
-
-form.wufoo{
-	margin:20px 14px 0 14px;
-	padding:0 0 20px 0;
-	position:relative;
+.hide,
+.cloak div,
+.cloak span,
+.likert.cloak tbody,
+.likert.cloak thead {
+  display: none !important;
 }
-
-img, a img{
-	border:none;
-	-ms-interpolation-mode: bicubic;
+form.wufoo {
+  margin: 20px 14px 0 14px;
+  padding: 0 0 20px 0;
+  position: relative;
 }
-* html #bottom{ 
-	_behavior: url(../images/iepngfix.htc);
+#container,
+#bottom {
+  margin: 0 auto;
+  width: 640px;
 }
-.hide, .cloak div, .cloak span, .likert.cloak tbody, .likert.cloak thead{
-	display:none !important;
+* html #bottom {
+  _behavior: url(../images/iepngfix.htc);
 }
-.likert.cloak table{
-	border:none;
+#container {
+  text-align: left;
+  background: #fff;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
 }

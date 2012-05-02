@@ -6,3 +6,4 @@ pdf/*.html
 pdf/images
 pdf/js
 .DS_Store
+Gemfile.lock

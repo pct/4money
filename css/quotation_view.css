@@ -1,148 +1,148 @@
-.quotation p:hover {
-    background-color: #F9F5C6;
-}
-.quotation p:focus {
-    background-color: #F9F3A7;
-}
-.quotation #quotation_name {
-    font-size: 16px;
-}
-.quotation #company_name {
-    font-size:20px;
-    height: 100px;
-    float:left;
-}
-.quotation #company_info {
-    float:left;
-    margin-left:10px;
-    font-size:16px;
-}
-.quotation .company p {
-    width:380px;
-    height:110px;
-    margin-right:15px;
-}
-.quotation #item_list, .quotation #price_info {
-    margin-top: 20px;
-}
-.quotation #price_info table {
-    width: 200px;
-    margin-left: 580px;
-}
-.quotation #price_info th {
-    text-align: left;
-    text-indent: 10px;
-    width: 100px;
-}
-.quotation #item_list table {
-    width: 780px;
-}
-.quotation #item_list p {
-    width: 160px;
-    height: 24px;
-}
-.quotation #item_list, .quotation #price_info {
-    font-size: 14px;
-}
-.quotation th.action, .quotation td.action {
-    width: 5px;
-    border: 0px none;
-}
-.quotation #customer_notes {
-    min-height: 10px;
-    font-size:14px;
-}
-.quotation #customer_info {
-    font-size: 16px;
-    float: left;
-    min-height: 180px;
-}
-.quotation #company_contact {
-    font-size: 16px;
-    float: left;
-    margin-left: 10px;
-}
-.quotation #confirm {
-    margin-top: 10px;
-    border: 1px solid black;
-    height: 200px;
-    width: 400px;
-    text-align:left;
-    margin-left: 410px;
-    font-size: 20px;
-    color: black;
-}
-.quotation #fax {
-    font-size: 16px;
-    text-align: right;
-    border: 0px;
-    margin-left: 40px;
-    margin-top: 140px;
-}
-.quotation .item_price, .quotation .item_quantity, .quotation .item_sub_total {
-    text-align: right;
-}
-.quotation .item_sub_total {
-    padding-right: 5px;
-}
-.quotation table {
-    border: 1px solid gray;
-    border-width: 0px;
-    border-spacing: 0px;
-    border-style: outset;
-    border-color: gray;
-    border-collapse: collapse;
-    background-color: white;
-}
-.quotation table th {
-    border-width: 1px;
-    padding: 1px;
-    border-style: inset;
-    border-color: gray;
-    background-color: white;
-    color: black;
-    -moz-border-radius: ;
-}
-.quotation table td {
-    border-width: 1px;
-    padding: 3px;
-    border-style: inset;
-    border-color: gray;
-    background-color: white;
-    min-height: 10px;
-    color: black;
-    -moz-border-radius: ;
-}
-.quotation table tr {
-    border-width: 1px;
-    padding: 1px;
-    border-style: inset;
-    border-color: gray;
-    background-color: white;
-    -moz-border-radius: ;
-}
-
-.quotation hr {
-    color: #ccc;
-    background-color: #ccc;
-    height: 1px;
-    border: 1px solid #ccc;
-}
-
-.quotation #confirm_notes {
-    margin: 2px;
-    border-bottom: 1px solid black;
-}
-.quotation #bank_info {
-    font-size: 16px;
-}
-.quotation #price_info td{
-    text-align:right;
+.quotation th.action,
+.quotation td.action {
+  width: 5px;
+  border: 0px none;
 }
 .quotation .print {
-    width: 80%;
-    text-align: right;
-    font-size: 20px;
-    cursor: pointer;
-    color: #77BACE;
+  width: 80%;
+  text-align: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: #77BACE;
+}
+.quotation #confirm_notes {
+  margin: 2px;
+  border-bottom: 1px solid black;
+}
+.quotation #customer_info {
+  font-size: 16px;
+  float: left;
+  min-height: 180px;
+}
+.quotation #quotation_name {
+  font-size: 16px;
+}
+.quotation p:focus {
+  background-color: #F9F3A7;
+}
+.quotation .company p {
+  width: 380px;
+  height: 110px;
+  margin-right: 15px;
+}
+.quotation #bank_info {
+  font-size: 16px;
+}
+.quotation table {
+  border: 1px solid gray;
+  border-width: 0px;
+  border-spacing: 0px;
+  border-style: outset;
+  border-color: gray;
+  border-collapse: collapse;
+  background-color: white;
+}
+.quotation table td {
+  border-width: 1px;
+  padding: 3px;
+  border-style: inset;
+  border-color: gray;
+  background-color: white;
+  min-height: 10px;
+  color: black;
+  -moz-border-radius: ;
+}
+.quotation table tr {
+  border-width: 1px;
+  padding: 1px;
+  border-style: inset;
+  border-color: gray;
+  background-color: white;
+  -moz-border-radius: ;
+}
+.quotation table th {
+  border-width: 1px;
+  padding: 1px;
+  border-style: inset;
+  border-color: gray;
+  background-color: white;
+  color: black;
+  -moz-border-radius: ;
+}
+.quotation #customer_notes {
+  min-height: 10px;
+  font-size: 14px;
+}
+.quotation #company_name {
+  font-size: 20px;
+  height: 100px;
+  float: left;
+}
+.quotation #fax {
+  font-size: 16px;
+  text-align: right;
+  border: 0px;
+  margin-left: 40px;
+  margin-top: 140px;
+}
+.quotation #company_contact {
+  font-size: 16px;
+  float: left;
+  margin-left: 10px;
+}
+.quotation #company_info {
+  float: left;
+  margin-left: 10px;
+  font-size: 16px;
+}
+.quotation .item_sub_total {
+  padding-right: 5px;
+}
+.quotation #confirm {
+  margin-top: 10px;
+  border: 1px solid black;
+  height: 200px;
+  width: 400px;
+  text-align: left;
+  margin-left: 410px;
+  font-size: 20px;
+  color: black;
+}
+.quotation #item_list p {
+  width: 160px;
+  height: 24px;
+}
+.quotation #item_list table {
+  width: 780px;
+}
+.quotation #price_info td {
+  text-align: right;
+}
+.quotation #price_info table {
+  width: 200px;
+  margin-left: 580px;
+}
+.quotation #price_info th {
+  text-align: left;
+  text-indent: 10px;
+  width: 100px;
+}
+.quotation p:hover {
+  background-color: #F9F5C6;
+}
+.quotation hr {
+  color: #ccc;
+  background-color: #ccc;
+  height: 1px;
+  border: 1px solid #ccc;
+}
+.quotation #item_list,
+.quotation #price_info {
+  margin-top: 20px;
+  font-size: 14px;
+}
+.quotation .item_price,
+.quotation .item_quantity,
+.quotation .item_sub_total {
+  text-align: right;
 }

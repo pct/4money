@@ -1,156 +1,169 @@
-#header, #secondary_bar, #sidebar, article header, .action, tfoot, footer, input[type="submit"], .print {
-    display:none;
+.quotation th.action,
+.quotation td.action {
+  width: 5px;
+  border: 0px none;
+}
+.quotation input[type="text"]:hover,
+textarea:hover {
+  background-color: #F9F5C6;
 }
 body {
-    width:840px;
+  width: 840px;
 }
-#main {
-    height:0px !important;
+#header,
+#secondary_bar,
+#sidebar,
+article header,
+.action,
+tfoot,
+footer,
+input[type="submit"],
+.print {
+  display: none;
 }
-.quotation input[type="text"], .quotation textarea {
-    width:780px;
-    margin-top: 10px;
-}
-.quotation input[type="text"], textarea {
-    border: 0px;
-}
-.quotation input[type="text"]:hover , textarea:hover {
-    background-color: #F9F5C6;
-}
-.quotation input[type="text"]:focus, textarea:focus {
-    background-color: #F9F3A7;
-}
-.quotation #quotation_name {
-    font-size: 16px;
-}
-.quotation #company_name {
-    font-size:20px;
-    height: 100px;
-    float:left;
-}
-.quotation #company_info {
-    float:left;
-    margin-left:10px;
-    font-size:16px;
-}
-.quotation .company textarea, .quotation .company p {
-    width:380px;
-    height:110px;
-    margin-right:15px;
-}
-.quotation #item_list, .quotation #price_info {
-    margin-top: 20px;
-}
-.quotation #price_info table {
-    width: 200px;
-    margin-left: 580px;
-}
-.quotation #price_info th {
-    text-align: left;
-    text-indent: 10px;
-    width: 100px;
-}
-.quotation #item_list table {
-    width: 780px;
-}
-.quotation #item_list input {
-    width: 160px;
-    height: 24px;
-}
-.quotation #item_list, .quotation #price_info {
-    font-size: 14px;
-}
-.quotation th.action, .quotation td.action {
-    width: 5px;
-    border: 0px none;
-}
-.quotation #customer_notes {
-    min-height: 10px;
-    font-size:14px;
+.quotation #confirm_notes {
+  margin: 2px;
+  border-bottom: 1px solid black;
 }
 .quotation #customer_info {
-    font-size: 16px;
-    float: left;
-    min-height: 180px;
+  font-size: 16px;
+  float: left;
+  min-height: 180px;
 }
-.quotation #company_contact {
-    font-size: 16px;
-    float: left;
-    margin-left: 10px;
-}
-.quotation #confirm {
-    margin-top: 10px;
-    border: 1px solid black;
-    height: 200px;
-    width: 400px;
-    text-align:left;
-    margin-left: 410px;
-    font-size: 20px;
-    color: black;
-}
-.quotation #fax {
-    font-size: 16px;
-    text-align: right;
-    border: 0px;
-    margin: 140px 5px 5px 5px;
-}
-.quotation .item_price, .quotation .item_quantity, .quotation .item_sub_total {
-    text-align: right;
-}
-.quotation .item_sub_total {
-    padding-right: 5px;
-}
-.quotation table {
-    border: 1px solid gray;
-    border-width: 0px;
-    border-spacing: 0px;
-    border-style: outset;
-    border-color: gray;
-    border-collapse: collapse;
-    background-color: white;
-}
-.quotation table th {
-    border-width: 1px;
-    padding: 1px;
-    border-style: inset;
-    border-color: gray;
-    background-color: white;
-    color: black;
-    -moz-border-radius: ;
-}
-.quotation table td {
-    border-width: 1px;
-    padding: 3px;
-    border-style: inset;
-    border-color: gray;
-    background-color: white;
-    min-height: 10px;
-    color: black;
-    -moz-border-radius: ;
-}
-.quotation table tr {
-    border-width: 1px;
-    padding: 1px;
-    border-style: inset;
-    border-color: gray;
-    background-color: white;
-    -moz-border-radius: ;
-}
-
-.quotation hr {
-    color: #ccc;
-    background-color: #ccc;
-    height: 1px;
-    border: 1px solid #ccc;
-}
-
-.quotation #confirm_notes {
-    margin: 2px;
-    border-bottom: 1px solid black;
+.quotation #quotation_name {
+  font-size: 16px;
 }
 .quotation #bank_info {
-    font-size: 16px;
+  font-size: 16px;
+}
+.quotation table {
+  border: 1px solid gray;
+  border-width: 0px;
+  border-spacing: 0px;
+  border-style: outset;
+  border-color: gray;
+  border-collapse: collapse;
+  background-color: white;
+}
+.quotation table td {
+  border-width: 1px;
+  padding: 3px;
+  border-style: inset;
+  border-color: gray;
+  background-color: white;
+  min-height: 10px;
+  color: black;
+  -moz-border-radius: ;
+}
+.quotation table tr {
+  border-width: 1px;
+  padding: 1px;
+  border-style: inset;
+  border-color: gray;
+  background-color: white;
+  -moz-border-radius: ;
+}
+.quotation table th {
+  border-width: 1px;
+  padding: 1px;
+  border-style: inset;
+  border-color: gray;
+  background-color: white;
+  color: black;
+  -moz-border-radius: ;
+}
+.quotation #customer_notes {
+  min-height: 10px;
+  font-size: 14px;
+}
+.quotation #company_name {
+  font-size: 20px;
+  height: 100px;
+  float: left;
+}
+.quotation #fax {
+  font-size: 16px;
+  text-align: right;
+  border: 0px;
+  margin: 140px 5px 5px 5px;
+}
+.quotation #company_contact {
+  font-size: 16px;
+  float: left;
+  margin-left: 10px;
+}
+.quotation #company_info {
+  float: left;
+  margin-left: 10px;
+  font-size: 16px;
+}
+.quotation .item_sub_total {
+  padding-right: 5px;
+}
+.quotation #confirm {
+  margin-top: 10px;
+  border: 1px solid black;
+  height: 200px;
+  width: 400px;
+  text-align: left;
+  margin-left: 410px;
+  font-size: 20px;
+  color: black;
+}
+.quotation #item_list table {
+  width: 780px;
+}
+.quotation #item_list input {
+  width: 160px;
+  height: 24px;
 }
 .quotation #price_info {
-    text-align:right;
+  text-align: right;
+}
+.quotation #price_info table {
+  width: 200px;
+  margin-left: 580px;
+}
+.quotation #price_info th {
+  text-align: left;
+  text-indent: 10px;
+  width: 100px;
+}
+.quotation hr {
+  color: #ccc;
+  background-color: #ccc;
+  height: 1px;
+  border: 1px solid #ccc;
+}
+.quotation input[type="text"]:focus,
+textarea:focus {
+  background-color: #F9F3A7;
+}
+.quotation #item_list,
+.quotation #price_info {
+  margin-top: 20px;
+  font-size: 14px;
+}
+.quotation input[type="text"],
+.quotation textarea {
+  width: 780px;
+  margin-top: 10px;
+}
+.quotation .company textarea,
+.quotation .company p {
+  width: 380px;
+  height: 110px;
+  margin-right: 15px;
+}
+#main {
+  height: 0px !important;
+}
+.quotation .item_price,
+.quotation .item_quantity,
+.quotation .item_sub_total {
+  text-align: right;
+}
+.quotation input[type="text"],
+textarea {
+  border: 0px;
 }

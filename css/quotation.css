@@ -1,102 +1,110 @@
-.quotation input[type="text"], .quotation textarea {
-    width:820px;
-    margin-top: 10px;
+.quotation th.action,
+.quotation td.action {
+  width: 5px;
+  border: 0px none;
 }
-.quotation input[type="text"], textarea {
-    border: 1px dashed #ccc;
-}
-.quotation input[type="text"]:hover , textarea:hover {
-    background-color: #F9F5C6;
-}
-.quotation input[type="text"]:focus, textarea:focus {
-    background-color: #F9F3A7;
-}
-.quotation input#quotation_name {
-    font-size: 16px;
-}
-.quotation textarea#company_name {
-    font-size:20px;
-    height: 100px;
-}
-.quotation textarea#company_info {
-    font-size:16px;
-}
-.quotation .company textarea {
-    width:400px;
-    height:110px;
-    margin-right:15px;
-}
-.quotation #item_list, .quotation #price_info {
-    margin-top: 20px;
-}
-.quotation #price_info table {
-    width: 200px;
-    margin-left: 610px;
-}
-.quotation #price_info th {
-    text-align: left;
-    text-indent: 10px;
-    width: 100px;
-}
-.quotation #item_list table {
-    width: 855px;
-}
-.quotation #item_list input {
-    width: 160px;
-    height: 24px;
-}
-.quotation #item_list, .quotation #price_info {
-    font-size: 14px;
-}
-.quotation tr, .quotation th, .quotation td {
-    border: 1px solid #ccc;
-    color: black;
-}
-.quotation td {
-    padding: 10px;
-}
-.quotation th.action, .quotation td.action {
-    width: 5px;
-    border: 0px none;
-}
-.quotation #customer_notes {
-    height: 200px;
-}
-.quotation #confirm {
-    margin-top: 10px;
-    border: 1px solid black;
-    height: 200px;
-    width: 400px;
-    text-align:left;
-    margin-left: 410px;
-    font-size: 20px;
-    color: black;
-}
-.quotation #fax {
-    font-size: 16px;
-    text-align: right;
-    border: 0px;
-    margin-left: 40px;
-    margin-top: 140px;
-}
-.quotation input[type="submit"] {
-    width: 120px;
-    height: 50px;
-    font-size:20px;
-}
-.quotation #add_item, .quotation .remove_item {
-    cursor: pointer;
-    color: #77BACE;
-}
-.quotation .item_price, .quotation .item_quantity, .quotation .item_sub_total {
-    text-align: right;
+.quotation input[type="text"]:hover,
+textarea:hover {
+  background-color: #F9F5C6;
 }
 .quotation #confirm_notes {
-    margin: 2px;
-    border-bottom: 1px solid black;
+  margin: 2px;
+  border-bottom: 1px solid black;
 }
-
-.quotation #item_table textarea{
-	width:300px;
-	height:80px;
+.quotation textarea#company_name {
+  font-size: 20px;
+  height: 100px;
+}
+.quotation textarea#company_info {
+  font-size: 16px;
+}
+.quotation input#quotation_name {
+  font-size: 16px;
+}
+.quotation .company textarea {
+  width: 400px;
+  height: 110px;
+  margin-right: 15px;
+}
+.quotation input[type="submit"] {
+  width: 120px;
+  height: 50px;
+  font-size: 20px;
+}
+.quotation #customer_notes {
+  height: 200px;
+}
+.quotation td {
+  padding: 10px;
+}
+.quotation #fax {
+  font-size: 16px;
+  text-align: right;
+  border: 0px;
+  margin-left: 40px;
+  margin-top: 140px;
+}
+.quotation #item_table textarea {
+  width: 300px;
+  height: 80px;
+}
+.quotation #confirm {
+  margin-top: 10px;
+  border: 1px solid black;
+  height: 200px;
+  width: 400px;
+  text-align: left;
+  margin-left: 410px;
+  font-size: 20px;
+  color: black;
+}
+.quotation #item_list table {
+  width: 855px;
+}
+.quotation #item_list input {
+  width: 160px;
+  height: 24px;
+}
+.quotation #price_info table {
+  width: 200px;
+  margin-left: 610px;
+}
+.quotation #price_info th {
+  text-align: left;
+  text-indent: 10px;
+  width: 100px;
+}
+.quotation input[type="text"]:focus,
+textarea:focus {
+  background-color: #F9F3A7;
+}
+.quotation #item_list,
+.quotation #price_info {
+  margin-top: 20px;
+  font-size: 14px;
+}
+.quotation input[type="text"],
+.quotation textarea {
+  width: 820px;
+  margin-top: 10px;
+}
+.quotation #add_item,
+.quotation .remove_item {
+  cursor: pointer;
+  color: #77BACE;
+}
+.quotation .item_price,
+.quotation .item_quantity,
+.quotation .item_sub_total {
+  text-align: right;
+}
+.quotation tr,
+.quotation th,
+.quotation td {
+  border: 1px solid #ccc;
+  color: black;
+}
+.quotation input[type="text"],
+textarea {
+  border: 1px dashed #ccc;
 }
