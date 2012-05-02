@@ -120,6 +120,26 @@ $app->get('/quotation_view/:id', function($id) use ($app) {
     $app->render('quotation_view.html', $data);
 });
 
+$app->get('/quotation_delete/:id', function($id) use ($app) {
+    $option_keys = array(
+        'company_fax',
+    );
+
+    $options = $app->applyHook('get_options', $option_keys);
+    $quotation = $app->applyHook('check_quotation_exists', $id);
+
+    $quotation_items = unserialize($quotation->items);
+
+    $data = array(
+        'breadcrumb_title' => '刪除報價單',
+        'quotation'        => $quotation,
+        'quotation_items'  => $quotation_items,
+    );
+
+    $data = array_merge($data, $options);
+    $app->render('quotation_delete.html', $data);
+});
+
 $app->get('/quotation_download_pdf/:id', function($id) use ($app) {
     require 'lib/Wkhtmltopdf.php';
 
@@ -242,3 +262,26 @@ $app->post('/ajax_update_quotation_status', function() use ($app) {
     }
 });
 
+$app->post('/ajax_delete_quotation', function() use ($app) {
+    $post = $app->request()->post();
+
+    if ($post && (isset($post['quotation_id']))) {
+        $quotation = ORM::for_table('quotation')->find_one($post['quotation_id']);
+        $ret = $quotation->delete();
+
+        if ($ret) {
+            $data = array(
+                'class' => 'success',
+                'msg'   => '報價單刪除成功！',
+                'link'  => 'quotation_list',
+                'link_msg' => '到列表查看'
+            );
+        } else {
+            $data = array(
+                'class' => 'error',
+                'msg'   => '報價單刪除失敗，請重試！'
+            );
+        }
+        $app->render('_notice.html', $data);
+    }
+});

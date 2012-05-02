@@ -1,0 +1,118 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_form_head.html' %}
+<link rel="stylesheet" href="{{full_doc_root}}/css/quotation_view.css" type="text/css" media="screen" />
+<script type="text/javascript" src="{{full_doc_root}}/js/quotation_view.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>{{breadcrumb_title}}</h3>
+    </header>
+    <div class="module_content quotation">
+        <div class="company">
+            <div id="my_company_logo">
+                <img src="{{full_doc_root}}/logo.png" alt="my company logo" />
+            </div>
+            <p id="company_name">{{quotation.company_name|nl2br}}</p>
+            <p id="company_info">{{quotation.company_info|nl2br}}</p>
+        </div>
+        <div class="clear"></div>
+        <div>
+            <p id="quotation_name">{{quotation.quotation_name}}</p>
+        </div>
+        <hr />
+        <div class="company">
+            <p id="customer_info">{{quotation.customer_info|nl2br}}</p>
+            <p id="company_contact">{{quotation.company_contact|nl2br}}</p>
+        </div>
+        <div class="clear"></div>
+        <div id="item_list">
+            <table cellspacing="0" cellpadding="0" id="item_table">
+                <thead>
+                    <tr>
+						<th>項次</th>
+                        <th>項目說明</th>
+                        <th>數量</th>
+                        <th>單價</th>
+                        <th>金額</th>
+                        <th>備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in quotation_items %}
+                    <tr>
+						{% if item.desc|substr:"0,4" in "--- " %}
+						<td colspan="6">{{item.desc}}</td>
+						{% else %}
+						<td class="item_num"></td>
+                        <td>{{item.desc|nl2br}}&nbsp;</td>
+                        <td class="item_quantity">{{item.quantity}}&nbsp;</td>
+                        <td class="item_price">{{item.price}}&nbsp;</td>
+                        <td class="item_sub_total">&nbsp;</td>
+                        <td>{{item.notes}}&nbsp;</td>
+						{% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id="price_info">
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <th>小計</th>
+                    <td id="sub_total_price">{{quotation.sub_total_price|money}}&nbsp;</td>
+                </tr>
+                <tr>
+                    <th>稅金 (5%)</th>
+                    <td id="vat_price">{{quotation.vat_price|money}}&nbsp;</td>
+                </tr>
+                <tr>
+                    <th>總計</th>
+                    <td id="total_price">{{quotation.total_price|money}}&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p id="customer_notes" >{{quotation.customer_notes|nl2br}}</p>
+        </div>
+        <div class="company">
+            <hr />
+            {% if bank_info %}
+            <p id="bank_info">{{quotation.bank_info|nl2br}}</p>
+            <hr />
+            {% endif %}
+        </div>
+        <form id="_form">
+            <input type="hidden" name="quotation_id" value="{{quotation.quotation_id}}" />
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="刪除報價單" /> |
+                <a href="quotation_list">取消</a>
+            </div>
+        </form>
+        <div class="clear"></div>
+    </div>
+</article>
+
+<div id="show_notice" style="display:none;"></div>
+
+<script type="text/javascript">
+$(function() {
+    $('#_form').validate({
+        submitHandler: function() {
+            $.post('{{doc_root}}/ajax_delete_quotation', $('#_form').serialize(), function(data) {
+                $('#show_notice').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
+            });
+            return false;
+        }
+    });
+});
+</script>
+
+{% endblock %}
