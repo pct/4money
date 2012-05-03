@@ -1,7 +1,7 @@
 <?php
 
 // quotation app hooks
-$app->hook('check_quotation_exists', function($quotation_id) {
+$app->hook('check_quotation_exists', function($quotation_id) use ($app) {
     $quotation = ORM::for_table('quotation')->find_one($quotation_id);
 
     if (!$quotation) {
