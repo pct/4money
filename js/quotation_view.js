@@ -65,4 +65,8 @@ $(function() {
 		});
 	}
 	$.item_id();
+    //畫面寬度過小自動隱藏menu
+    if($(document).width()<1200){
+        hide_menu()
+    }
 });
