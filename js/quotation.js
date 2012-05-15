@@ -67,4 +67,9 @@ $(function() {
 
     // 啟動時先算第一次
     $.count_prices();
+	
+	//畫面寬度過小自動隱藏menu
+	if($(document).width()<1200){
+		hide_menu()
+	}
 });

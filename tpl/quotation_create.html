@@ -165,6 +165,24 @@ Email：{{company_email}}
 <script type="text/javascript">
     $('#_form').validate({
         submitHandler: function() {
+			//confirm item
+			var item=$('#item_table tbody tr');
+			var i=$(item).length;
+			for(n=0;n<$(item).length;n++){
+				i=0;
+				if($('textarea',item[n]).val()!=''){
+					i=1;
+					break;
+				}
+			}
+			if(i==0){
+				var data='<h4 class="alert_error">請輸入報價單項目。</h4>';
+                $('#show_notice').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
+				return false;
+            }
+			//Save
             $.post('{{doc_root}}/ajax_save_quotations', $('#_form').serialize(), function(data) {
                 $('#show_notice').html(data).fadeIn('slow', function() {
                     $.equal_height();
