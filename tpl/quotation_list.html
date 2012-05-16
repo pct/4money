@@ -50,7 +50,7 @@ $(function() {
     $('#quotation_list_table').dataTable({"bJQueryUI": true, "iDisplayLength": 15, "aLengthMenu": [[15, 50, -1], [15, 50, "All"]], "sPaginationType": "full_numbers", "oLanguage":{
         "sUrl": "js/datatables_tw.txt"
         },
-        "aoColumns": [{"asSorting": ["desc"]}, null, null, null, null, null, null]
+        "aaSorting": [[0,'desc']]
     });
 });
 </script>
