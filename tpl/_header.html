@@ -9,21 +9,27 @@
 <script type="text/javascript" src="{{full_doc_root}}/js/utils.js"></script>
 <script type="text/javascript" src="{{full_doc_root}}/js/jquery-min.js"></script>
 <script type="text/javascript" src="{{full_doc_root}}/js/jquery.equalHeight.js"></script>
+<script type="text/javascript" src="{{full_doc_root}}/js/patch.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     //When page loads...
     $(".tab_content").hide(); //Hide all content
-    $("ul.tabs li:first").addClass("active").show(); //Activate first tab
-    $(".tab_content:first").show(); //Show first tab content
+	
+	$("ul.tabs").each(function(){
+		$("li:first",$(this)).addClass("active").show(); //Activate first tab
+	});
+	$(".tab_container").each(function(){
+		$('.tab_content:first',$(this)).show(); //Show first tab content
+	});
 
     //On Click Event
     $("ul.tabs li").click(function() {
-        $("ul.tabs li").removeClass("active"); //Remove any "active" class
-        $(this).addClass("active"); //Add "active" class to selected tab
-        $(".tab_content").hide(); //Hide all tab content
-
+		var active_group=$(this).parent().parent().parent();
+		$("ul.tabs li",active_group).removeClass("active"); //Remove "active" class in same group
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content",active_group).hide(); //Hide all tab content in same group
         var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-        $(activeTab).fadeIn(); //Fade in the active ID content
+        $(activeTab,active_group).fadeIn(); //Fade in the active ID content
         return false;
     });
 
