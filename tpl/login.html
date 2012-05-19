@@ -1,109 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant">
 	<head>
-		
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		
-		<title>Simpla Admin | Sign In</title>
-		
-		<!--                       CSS                       -->
-	  
-		<!-- Reset Stylesheet -->
-		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
-	  
-		<!-- Main Stylesheet -->
-		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-		
-		<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
-		<link rel="stylesheet" href="css/invalid.css" type="text/css" media="screen" />	
-		
-		<!-- Colour Schemes
-	  
-		Default colour scheme is green. Uncomment prefered stylesheet to use it.
-		
-		<link rel="stylesheet" href="css/blue.css" type="text/css" media="screen" />
-		
-		<link rel="stylesheet" href="css/red.css" type="text/css" media="screen" />  
-	 
-		-->
-		
-		<!-- Internet Explorer Fixes Stylesheet -->
-		
-		<!--[if lte IE 7]>
-			<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
-		<![endif]-->
-		
-		<!--                       Javascripts                       -->
-	  
-		<!-- jQuery -->
-		<script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
-		
-		<!-- jQuery Configuration -->
-		<script type="text/javascript" src="scripts/simpla.jquery.configuration.js"></script>
-		
-		<!-- Facebox jQuery Plugin -->
-		<script type="text/javascript" src="scripts/facebox.js"></script>
-		
-		<!-- jQuery WYSIWYG Plugin -->
-		<script type="text/javascript" src="scripts/jquery.wysiwyg.js"></script>
-		
-		<!-- Internet Explorer .png-fix -->
-		
-		<!--[if IE 6]>
-			<script type="text/javascript" src="scripts/DD_belatedPNG_0.0.7a.js"></script>
-			<script type="text/javascript">
-				DD_belatedPNG.fix('.png_bg, img, li');
-			</script>
-		<![endif]-->
-		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{page_title}}</title>
+		<link rel="stylesheet" href="{{doc_root}}/css/layout.css" type="text/css" media="screen">
 	</head>
-  
-	<body id="login">
-		
-		<div id="login-wrapper" class="png_bg">
-			<div id="login-top">
-			
-				<h1>Simpla Admin</h1>
-				<!-- Logo (221px width) -->
-				<img id="logo" src="images/logo.png" alt="Simpla Admin logo" />
-			</div> <!-- End #logn-top -->
-			
-			<div id="login-content">
-				
-				<form action="index.html">
-				
-					<div class="notification information png_bg">
-						<div>
-							Just click "Sign In". No password needed.
-						</div>
+	<body style="background-color:#E0E0E3;" id="main">
+		<form action="#" method="post" style="padding-top:100px;">
+			{% if ip_block %}
+			<h4 class="alert_error">{{ip_block_msg}}</h4>
+			{% else %}
+			<article class="module" style="width:400px;margin:auto;">
+				<header><h3 style="margin:8px 20px;">{{page_title}} - 4money</h3></header>
+				<div class="module_content" style="margin:30px 20px;">
+					<fieldset>
+						<label>{{uid_item}}</label>
+						<input type="text" name="uid" style="width:90%;">
+					</fieldset>
+					<fieldset>
+						<label>{{pwd_item}}</label>
+						<input type="password" name="pwd" style="width:90%;">
+					</fieldset>
+					<div class="clear"></div>
+				</div>
+				<footer style="margin:0">
+					<div class="submit_link">
+						<input type="submit" value="{{page_title}}" class="alt_btn">
 					</div>
-					
-					<p>
-						<label>Username</label>
-						<input class="text-input" type="text" />
-					</p>
-					<div class="clear"></div>
-					<p>
-						<label>Password</label>
-						<input class="text-input" type="password" />
-					</p>
-					<div class="clear"></div>
-					<p id="remember-password">
-						<input type="checkbox" />Remember me
-					</p>
-					<div class="clear"></div>
-					<p>
-						<input class="button" type="submit" value="Sign In" />
-					</p>
-					
-				</form>
-			</div> <!-- End #login-content -->
-			
-		</div> <!-- End #login-wrapper -->
-		
-  </body>
-  
+				</footer>
+			</article>
+			{% endif %}
+		</form>
+	</body>
 </html>
