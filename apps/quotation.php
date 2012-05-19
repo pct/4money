@@ -1,7 +1,7 @@
 <?php
 
-// quotation app hooks
-$app->hook('check_quotation_exists', function($quotation_id) use ($app) {
+// quotation app function
+function check_quotation_exists($quotation_id){
     $quotation = ORM::for_table('quotation')->find_one($quotation_id);
 
     if (!$quotation) {
@@ -9,7 +9,7 @@ $app->hook('check_quotation_exists', function($quotation_id) use ($app) {
         exit;    
     }
     return $quotation; 
-});
+}
 
 // quotation CRUD
 $app->get('/quotation_create', function() use ($app) {
@@ -28,7 +28,7 @@ $app->get('/quotation_create', function() use ($app) {
         'quotation_id_prefix'
     );
 
-    $options = $app->applyHook('get_options', $option_keys);
+    $options = get_options($option_keys);
 
 	$k=array('%year'=>date('Y'),'%month'=>date('m'),'%day'=>date('d'),'%cyear'=>date('Y')-1911);
 	foreach($k as $key => $val){
@@ -68,8 +68,8 @@ $app->get('/quotation_edit/:id', function($id) use ($app) {
         'company_fax',
     );
 
-    $options = $app->applyHook('get_options', $option_keys);
-    $quotation = $app->applyHook('check_quotation_exists', $id);
+    $options = get_options($option_keys);
+    $quotation = check_quotation_exists($id);
     $quotation_items = unserialize($quotation->items);
 
     $data = array(
@@ -105,8 +105,8 @@ $app->get('/quotation_view/:id', function($id) use ($app) {
         'company_fax',
     );
 
-    $options = $app->applyHook('get_options', $option_keys);
-    $quotation = $app->applyHook('check_quotation_exists', $id);
+    $options = get_options($option_keys);
+    $quotation = check_quotation_exists($id);
 
     $quotation_items = unserialize($quotation->items);
 
@@ -125,8 +125,8 @@ $app->get('/quotation_delete/:id', function($id) use ($app) {
         'company_fax',
     );
 
-    $options = $app->applyHook('get_options', $option_keys);
-    $quotation = $app->applyHook('check_quotation_exists', $id);
+    $options = get_options($option_keys);
+    $quotation = check_quotation_exists($id);
 
     $quotation_items = unserialize($quotation->items);
 
@@ -147,8 +147,8 @@ $app->get('/quotation_download_pdf/:id', function($id) use ($app) {
         'company_fax',
     );
 
-    $options = $app->applyHook('get_options', $option_keys);
-    $quotation = $app->applyHook('check_quotation_exists', $id);
+    $options = get_options($option_keys);
+    $quotation = check_quotation_exists($id);
 
     $url = $app->config('full_doc_root').'/quotation_view/'.$id;
     $html = file_get_contents($url);
@@ -174,7 +174,7 @@ $app->get('/quotation_status_update/:id', function($id) use ($app) {
         'wait'      => '待回應'
     );
 
-    $quotation = $app->applyHook('check_quotation_exists', $id);
+    $quotation = check_quotation_exists($id);
 
     $quotation_items = unserialize($quotation->items);
 

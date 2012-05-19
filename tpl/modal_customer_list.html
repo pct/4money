@@ -27,7 +27,7 @@
                 {% for customer in customers %}
                 <tr>
                     <td>{{customer.customer_name}}</td>
-                    <td>{{customer.customer_uid|default:'-'}}</td>
+                    <td>{{customer.customer_uid|default('-')}}</td>
                     <td nowrap>
                         <a class="button insert_this_customer" rel="{{customer.customer_id}}"><span class="pen icon"></span>代入這家</a>
                     </td>

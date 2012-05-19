@@ -1,7 +1,7 @@
 <?php
 
 require 'Slim/Slim.php';
-require 'Slim/Views/HaangaView.php';
+require 'Slim/views/TwigView.php';
 require 'lib/idiorm.php';
 require 'config.php';
 
@@ -26,12 +26,24 @@ $slim_settings = array(
     'mode'               => 'production',
     'debug'              => false, 
     'log.enable'         => true,
-    'view'               => new HaangaView('./lib/Haanga', './tpl', './tpl_cache'),
+	'view'               => new TwigView('./lib/Twig','./tpl_cache'),
     'templates.path'     => './tpl',
-    'cookies.secret_key' => $COOKIES_SECRET_KEY,
 );
 
 $app = new Slim($slim_settings);
+
+$app->add(new Slim_Middleware_SessionCookie(array(
+    'expires' => '20 minutes',
+    'path' => '/',
+    'domain' => null,
+    'secure' => false,
+    'httponly' => false,
+    'name' => '4money_session',
+    'secret' => $COOKIES_SECRET_KEY,
+    'cipher' => MCRYPT_RIJNDAEL_256,
+    'cipher_mode' => MCRYPT_MODE_CBC
+)));
+
 require 'app.php';
 $app->run();
 
