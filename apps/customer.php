@@ -1,7 +1,7 @@
 <?php
 
-// customer app hooks
-$app->hook('check_customer_exists', function($customer_id) {
+// customer app function
+function check_customer_exists($customer_id){
     $customer = ORM::for_table('customer')->find_one($customer_id);
 
     if (!$customer) {
@@ -9,9 +9,9 @@ $app->hook('check_customer_exists', function($customer_id) {
         exit;    
     }
     return $customer; 
-});
+}
 
-$app->hook('save_customer_data', function($customer_data) {
+function save_customer_data($customer_data){
     $customer_keys = array(
         'customer_name', 
         'invoice_title', 
@@ -41,7 +41,7 @@ $app->hook('save_customer_data', function($customer_data) {
     $ret = $customer->save();
 
     return $ret;
-});
+}
 
 // customer CRUD
 $app->get('/customer_create', function() use ($app) {
@@ -52,7 +52,7 @@ $app->get('/customer_create', function() use ($app) {
 });
 
 $app->get('/customer_edit/:id', function($id) use ($app) {
-    $customer = $app->applyHook('check_customer_exists', $id);
+    $customer = check_customer_exists($id);
     $data = array(
         'breadcrumb_title' => '更新客戶資料',
         'customer'         => $customer,
@@ -71,7 +71,7 @@ $app->get('/customer_list', function() use ($app) {
 });
 
 $app->get('/customer_delete/:id', function($id) use ($app) {
-    $customer = $app->applyHook('check_customer_exists', $id);
+    $customer = check_customer_exists($id);
     $data = array(
         'breadcrumb_title' => '刪除客戶資料',
         'customer'         => $customer,
@@ -94,7 +94,7 @@ $app->post('/ajax_save_customer', function() use ($app) {
 
     if ($post) {
         $wording = (isset($post['customer_id'])) ? '更新' : '建立';
-        $ret = $app->applyHook('save_customer_data', $post);
+        $ret = save_customer_data($post);
         if ($ret) {
             $data = array(
                 'class' => 'success',

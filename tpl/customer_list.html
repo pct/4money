@@ -33,16 +33,16 @@
                 {% for customer in customers %}
                 <tr>
                     <td>{{customer.customer_name}}</td>
-                    <td>{{customer.invoice_title|default:'-'}}</td>
-                    <td>{{customer.customer_uid|default:'-'}}</td>
-                    <td>{{customer.customer_addr|default:'-'}}</td>
-                    <td>{{customer.invoice_addr|default:'-'}}</td>
-                    <td>{{customer.customer_phone|default:'-'}}</td>
-                    <td>{{customer.customer_fax|default:'-'}}</td>
-                    <td>{{customer.contact_name|default:'-'}}</td>
-                    <td>{{customer.contact_phone|default:'-'}}</td>
-                    <td>{{customer.contact_email|default:'-'}}</td>
-                    <td>{{customer.customer_notes|default:'-'|nl2br}}</td>
+                    <td>{{customer.invoice_title|default('-')}}</td>
+                    <td>{{customer.customer_uid|default('-')}}</td>
+                    <td>{{customer.customer_addr|default('-')}}</td>
+                    <td>{{customer.invoice_addr|default('-')}}</td>
+                    <td>{{customer.customer_phone|default('-')}}</td>
+                    <td>{{customer.customer_fax|default('-')}}</td>
+                    <td>{{customer.contact_name|default('-')}}</td>
+                    <td>{{customer.contact_phone|default('-')}}</td>
+                    <td>{{customer.contact_email|default('-')}}</td>
+                    <td>{{customer.customer_notes|default('-')|nl2br}}</td>
                     <td nowrap>
                         <a class="middle button" href="customer_edit/{{customer.customer_id}}"><span class="pen icon"></span>編輯</a><a class="right negative button" href="customer_delete/{{customer.customer_id}}"><span class="trash icon"></span>刪除</a>
                     </td>
