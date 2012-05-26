@@ -46,7 +46,7 @@
                 <tbody>
                     {% for item in quotation_items %}
                     <tr>
-						{% if item.desc|substr:"0,4" in "--- " %}
+						{% if item.desc|substr(0,4) == "--- " %}
 						<td colspan="6">{{item.desc}}</td>
 						{% else %}
 						<td class="item_num"></td>

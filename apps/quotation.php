@@ -267,7 +267,12 @@ $app->post('/ajax_delete_quotation', function() use ($app) {
 
     if ($post && (isset($post['quotation_id']))) {
         $quotation = ORM::for_table('quotation')->find_one($post['quotation_id']);
-        $ret = $quotation->delete();
+
+        if($quotation!==false){
+            $ret = $quotation->delete();
+        }else{
+            $ret = false;
+        }
 
         if ($ret) {
             $data = array(
