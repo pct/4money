@@ -117,7 +117,12 @@ $app->post('/ajax_delete_customer', function() use ($app) {
 
     if ($post && (isset($post['customer_id']))) {
         $customer = ORM::for_table('customer')->find_one($post['customer_id']);
-        $ret = $customer->delete();
+
+        if($customer!==false){
+		    $ret = $customer->delete();
+        }else{
+            $ret=false;
+        }
 
         if ($ret) {
             $data = array(
