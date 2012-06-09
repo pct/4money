@@ -1,0 +1,61 @@
+{% extends '_layout.html' %}
+{% block content %}
+{% include '_form_head.html' %}
+
+<article class="module width_full">
+    <header>
+        <h3>{{breadcrumb_title}}</h3>
+    </header>
+    <div class="module_content">
+		<form id="_form_confirm" class="wufoo">
+			<ul>
+				<li>
+					<label class="desc" for="account_id">
+						帳號
+					</label>
+					<span>
+						{{acc_name}}
+					</span>
+				</li>
+				<li>
+					<label class="desc" for="new_pwd">
+						認證方式
+					</label>
+					<span>
+						{{type_words[acc_auth_type]}}
+					</span>
+				</li>
+				<li>
+					<label class="desc" for="confirm_pwd">
+						姓名
+					</label>
+					<span>
+						{{info_name}}
+					</span>
+				</li>
+			</ul>
+			<h4 class="alert_warning" style="margin:0 0 20px;">這個動作無法復原，您確定要刪除上述使用者嗎?</h4>
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="確認刪除" />&nbsp;|&nbsp;
+                <a href="{{doc_root}}/user_mgr">取消</a>
+            </div>
+		</form>
+    </div> 
+</article>
+<div id="show_notice" style="display:none;"></div>
+<script type="text/javascript">
+$(function() {
+    $('#_form_confirm').validate({
+        submitHandler: function() {
+            $.post('{{doc_root}}/ajax_user_delete', {id:"{{acc_name}}"}, function(data) {
+                $('#show_notice').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
+            });
+            return false;
+        }
+    });
+});
+</script>
+
+{% endblock %}

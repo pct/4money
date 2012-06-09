@@ -19,8 +19,6 @@ $app->get('/quotation_create', function() use ($app) {
         'company_phone',
         'company_fax',
         'company_addr',
-        'company_email',
-        'company_username',
         'bank_company_title',
         'bank_name',
         'bank_code',
@@ -33,6 +31,15 @@ $app->get('/quotation_create', function() use ($app) {
 	$k=array('%year'=>date('Y'),'%month'=>date('m'),'%day'=>date('d'),'%cyear'=>date('Y')-1911);
 	foreach($k as $key => $val){
 		$options['quotation_id_prefix']=str_replace($key,$val,$options['quotation_id_prefix']);
+	}
+
+	$user=ORM::for_table('account')->where('acc_name',$_SESSION['auth_uid'])->find_one();
+	$info=unserialize($user->acc_company);
+	if(is_array($info)){
+		while($k=key($info)){
+			$options['info_'.$k]=$info[$k];
+			next($info);
+		}
 	}
 
     $quotations = ORM::for_table('quotation')->order_by_asc('quotation_id')->find_many();

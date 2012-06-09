@@ -3,10 +3,12 @@
 // option app function
 function get_options($option_keys){
     $options = array();
+
     foreach ($option_keys as $ok) {
         $tmp = ORM::for_table('option')->where('option_key', $ok)->find_one();
         $options[$ok] = ($tmp) ? $tmp->option_value : '';
     }
+
     return $options;
 }
 
@@ -16,11 +18,12 @@ function render_option_defaut_value($data_keys) {
         $tmp = ORM::for_table('option')->where('option_key', $k)->find_one();
         $data[$k] = ($tmp) ? $tmp->option_value : '請輸入'.$v;
     }
-    return $data;
+	return $data;
 }
 
 // option CRUD
 $app->get('/company_options', function() use ($app) {
+	$app->applyHook('account.check_sysadmin');
     $data_keys = array(
         'company_name'     => '公司名稱',
         'company_id'       => '公司統編',
@@ -38,6 +41,7 @@ $app->get('/company_options', function() use ($app) {
 });
 
 $app->get('/bank_options', function() use ($app) {
+	$app->applyHook('account.check_sysadmin');
     $data_keys = array(
         'bank_company_title' => '公司戶名',
         'bank_name'          => '銀行',
@@ -52,9 +56,12 @@ $app->get('/bank_options', function() use ($app) {
 });
 
 $app->get('/advance_options', function() use ($app) {
+	$app->applyHook('account.check_sysadmin');
     $data_keys = array(
         'quotation_id_prefix' => '報價單前綴編號或文字',
         'breadcrumb_title'    => '進階設定',
+		'auth_pop3_host'      => 'POP3伺服器位址',
+		'auth_pop3_msg'       => 'POP3認證密碼變更訊息',
     );
 
     $data=render_option_defaut_value($data_keys);
@@ -62,15 +69,40 @@ $app->get('/advance_options', function() use ($app) {
     $app->render('advance_options.html', $data);
 });
 
+$app->post('/ajax_save_options_auth', function() use ($app) {
+	$app->applyHook('account.check_sysadmin');
+	$options = array(
+		'auth_pop3_host',
+		'auth_pop3_msg'
+	);
+
+	$post = $app->request()->post();
+	
+
+	foreach ($options as $o) {
+		if (isset($post[$o])){
+			$tmp = ORM::for_table('option')->where('option_key', $o)->find_one();
+			if(!$tmp){
+				$tmp=ORM::for_table('option')->create();
+			}
+			$tmp->option_key = $o;
+			$tmp->option_value = $post[$o];
+			$tmp->save();
+		}
+	}
+	
+	$data = array('class' => 'success','msg'   => '資料更新成功！');
+	$app->render('_notice.html', $data);
+});
+
 $app->post('/ajax_save_options', function() use ($app) {
+	$app->applyHook('account.check_sysadmin');
     $options = array(
         'company_name', 
         'company_id', 
         'company_phone',
         'company_fax',
         'company_addr',
-        'company_email',
-        'company_username',
         'bank_company_title',
         'bank_name',
         'bank_code',

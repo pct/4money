@@ -48,7 +48,7 @@ class Twig_Extension_Core extends Twig_Extension
     /**
      * Sets the default timezone to be used by the date filter.
      *
-     * @param DateTimeZone|string $timezone  The default timezone string or a DateTimeZone object
+     * @param DateTimeZone|string $timezone The default timezone string or a DateTimeZone object
      */
     public function setTimezone($timezone)
     {
@@ -68,9 +68,9 @@ class Twig_Extension_Core extends Twig_Extension
     /**
      * Sets the default format to be used by the number_format filter.
      *
-     * @param integer $decimal The number of decimal places to use.
-     * @param string $decimalPoint The character(s) to use for the decimal point.
-     * @param string $thousandSep The character(s) to use for the thousands separator.
+     * @param integer $decimal      The number of decimal places to use.
+     * @param string  $decimalPoint The character(s) to use for the decimal point.
+     * @param string  $thousandSep  The character(s) to use for the thousands separator.
      */
     public function setNumberFormat($decimal, $decimalPoint, $thousandSep)
     {
@@ -126,6 +126,7 @@ class Twig_Extension_Core extends Twig_Extension
             'format'        => new Twig_Filter_Function('sprintf'),
             'replace'       => new Twig_Filter_Function('strtr'),
             'number_format' => new Twig_Filter_Function('twig_number_format_filter', array('needs_environment' => true)),
+            'abs'           => new Twig_Filter_Function('abs'),
 
             // encoding
             'url_encode'       => new Twig_Filter_Function('twig_urlencode_filter'),
@@ -415,28 +416,29 @@ function twig_date_format_filter(Twig_Environment $env, $date, $format = null, $
  */
 function twig_date_converter(Twig_Environment $env, $date = null, $timezone = null)
 {
-    if ($date instanceof DateTime) {
-        return $date;
-    }
+    if (!$date instanceof DateTime) {
+        $asString = (string) $date;
 
-    $asString = (string) $date;
-
-    if (ctype_digit($asString) || (!empty($asString) && '-' === $asString[0] && ctype_digit(substr($asString, 1)))) {
-        $date = new DateTime('@'.$date);
-        $date->setTimezone(new DateTimeZone(date_default_timezone_get()));
+        if (ctype_digit($asString) || (!empty($asString) && '-' === $asString[0] && ctype_digit(substr($asString, 1)))) {
+            $date = new DateTime('@'.$date);
+        } else {
+            $date = new DateTime($date);
+        }
     } else {
-        $date = new DateTime($date);
+        $date = clone $date;
     }
 
     // set Timezone
     if (null !== $timezone) {
-        if (!$timezone instanceof DateTimeZone) {
-            $timezone = new DateTimeZone($timezone);
+        if ($timezone instanceof DateTimeZone) {
+            $date->setTimezone($timezone);
+        } else {
+            $date->setTimezone(new DateTimeZone($timezone));
         }
-
-        $date->setTimezone($timezone);
     } elseif (($timezone = $env->getExtension('core')->getTimezone()) instanceof DateTimeZone) {
         $date->setTimezone($timezone);
+    } else {
+        $date->setTimezone(new DateTimeZone(date_default_timezone_get()));
     }
 
     return $date;

@@ -11,4 +11,108 @@
     </div>
 </article>
 
+<article class="module width_3_quarter" style="width:30%;margin-right:0;">
+	<header>
+		<h3 class="tabs_involved" style="width:30%;">登入紀錄</h3>
+		<ul class="tabs">
+			<li><a href="#tab1">失敗</a></li>
+			<li><a href="#tab2">成功</a></li>
+		</ul>
+	</header>
+	<div class="tab_container">
+		<div id="tab1" class="tab_content" style="display:block">
+			<table class="tablesorter" cellspacing="0">
+				<thead>
+					<tr>
+						<th class="header">時間</th>
+						<th class="header">來源IP</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for log in login_log_err %}
+					<tr>
+						<td>{{log.log_time|date("Y-m-d H:i:s")}}</td>
+						<td>{{log.log_ip}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div id="tab2" class="tab_content" style="display:block">
+			<table class="tablesorter" cellspacing="0">
+				<thead>
+					<tr>
+						<th class="header">時間</th>
+						<th class="header">來源IP</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for log in login_log_ok %}
+					<tr>
+						<td>{{log.log_time|date("Y-m-d H:i:s")}}</td>
+						<td>{{log.log_ip}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</article>
+
+<article class="module width_quarter" style="width:67%;float:right;margin:20px -3% 0 0;">
+	<header>
+		<h3 class="tabs_involved" style="width:30%;">報價單紀錄</h3>
+		<ul class="tabs">
+			<li><a href="#tab3">最近修改</a></li>
+			<li><a href="#tab4">最近列印</a></li>
+		</ul>
+	</header>
+	<div class="tab_container">
+		<div id="tab3" class="tab_content" style="display:block">
+			<table class="tablesorter" cellspacing="0">
+				<thead>
+					<tr>
+						<th class="header">修改時間</th>
+						<th class="header">訂單名稱</th>
+						<th class="header">客戶資料</th>
+						<th class="header">未稅金額</th>
+						<th class="header">含稅金額</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="tab4" class="tab_content" style="display:block">
+			<table class="tablesorter" cellspacing="0">
+				<thead>
+					<tr>
+						<th class="header">列印時間</th>
+						<th class="header">訂單名稱</th>
+						<th class="header">客戶資料</th>
+						<th class="header">未稅金額</th>
+						<th class="header">含稅金額</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</article>
+<div class="clear"></div>
 {% endblock %}

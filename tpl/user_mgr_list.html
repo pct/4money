@@ -1,0 +1,51 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_list_header.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>{{breadcrumb_title}}</h3>
+    </header>
+    <div class="module_content">
+        <table id="account_list_table" cellpadding="0" cellspacing="0" border="0" class="display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>帳號</th>
+                    <th>狀態</th>
+					<th>認證方式</th>
+                    <th>上次成功登入時間</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in account %}
+                <tr>
+                    <td>{{user.acc_name}}</td>
+                    <td>{{status_words[user.acc_flag]}}</td>
+                    <td>{{type_words[user.acc_auth_type]}}</td>
+                    <td>{% if log[user.acc_name]<0 %}從未登入{% else %}{{log[user.acc_name]|date('Y-m-d H:i:s')}}{% endif %}</td>
+                    <td nowrap>
+                        <a class="{% if user.acc_name != 'admin'%}left{% else %}right{% endif %} button" href="user_edit/{{user.acc_name}}"><span class="pen icon"></span>編輯</a>{% if user.acc_name != 'admin' %}<a class="right negative button" href="user_delete/{{user.acc_name}}"><span class="trash icon"></span>刪除</a>{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</article>
+
+<script type="text/javascript">
+$(function() {
+    $('#account_list_table').dataTable({"bJQueryUI": true, "iDisplayLength": 15, "aLengthMenu": [[15, 50, -1], [15, 50, "All"]], "sPaginationType": "full_numbers", "oLanguage":{
+        "sUrl": "js/datatables_tw.txt"
+        }
+    });
+});
+</script>
+
+{% endblock %}

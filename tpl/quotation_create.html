@@ -43,9 +43,12 @@
                 <textarea class="required" id="customer_info" name="customer_info">客戶資料</textarea>
                 <textarea class="required" id="company_contact" name="company_contact">
 {{company_name}} 
-聯絡人：{{company_username}}
-電話：{{company_phone}}
-Email：{{company_email}}
+{% if info_name %}聯絡人：{{info_name}}{% else %}聯絡人：{% endif %}
+
+{% if info_phone %}電話：{{info_phone}}{% else %}電話：{% endif %}
+
+{% if info_email %}mail：{{info_email}}{% else %}mail：{% endif %}
+
 日期：{{today}}
                 </textarea>
             </div>
