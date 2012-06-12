@@ -139,7 +139,7 @@ $app->hook('account.check_sysadmin', function() use ($app) {
 	if(!in_array($_SESSION['auth_uid'],unserialize(SYSTEM_ADMIN))){
 		if($app->request()->getMethod()=='GET'){
 			ob_end_flush();
-			$app->render('access_denied.html', array('breadcrumb_title' => '404'));
+			$app->render('access_denied.html', array('breadcrumb_title' => '權限不足'));
 			ob_end_flush();
 			$app->stop();
 		}else{

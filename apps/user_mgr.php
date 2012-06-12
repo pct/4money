@@ -162,4 +162,67 @@ $app->post('/ajax_user_delete', function() use ($app) {
     }
     $app->render('_notice.html', $data);
 });
+
+/*
+ * Log
+ */
+$app->get('/log/:type', function($type) use ($app) {
+	$app->applyHook('account.check_sysadmin');
+	if($type=='login'){
+		$app->render('user_log_login.html',array('breadcrumb_title'=>'登入紀錄'));
+	}
+ });
+ 
+$app->post('/log_ajax/:type', function($type) use ($app) {
+	$app->applyHook('account.check_sysadmin');
+	$post = $app->request()->post();
+
+	if($type=='login'){
+		$totalcount=ORM::for_table('account_log')->count();
+		
+		$obj=ORM::for_table('account_log');
+		$totaldisplaycount=ORM::for_table('account_log');
+		if(!empty($post['sSearch'])){
+			$obj->where_raw("`log_user` LIKE ? OR `log_ip` LIKE ?",array('%'.$post['sSearch'].'%','%'.$post['sSearch'].'%'));
+			$totaldisplaycount->where_raw("`log_user` LIKE ? OR `log_ip` LIKE ?",array('%'.$post['sSearch'].'%','%'.$post['sSearch'].'%'));
+		}
+		
+		$cn=$post['iSortingCols'];
+		$col=array('log_time','log_user','log_ip','log_event');
+		for($n=0;$n<$cn;$n++){
+			$col_name=$col[(int)($post['iSortCol_'.$n])];
+			$col_sort=$post['sSortDir_'.$n];
+			if($col_sort=='asc'){
+				$obj->order_by_asc($col_name);
+			}else{
+				$obj->order_by_desc($col_name);
+			}
+		}
+		$obj->order_by_asc('log_event');
+		
+		$obj=$obj->limit($post['iDisplayLength'])->offset($post['iDisplayStart'])->find_many();
+		$totaldisplaycount=$totaldisplaycount->count();
+		
+		$log=array();
+		foreach($obj as $item){
+			$log[]=array(date('Y-m-d H:i:s',$item->log_time),$item->log_user,$item->log_ip,$item->log_event);
+		}
+		//print_r($log);
+		$data=array('data'=>$log,'echo'=>$post['sEcho'],'total'=>$totalcount,'totaldisplay'=>$totaldisplaycount);
+		$app->render('ajax_get_log_datatables.json',$data);
+	}else if($type=='unlock'){
+		$ip=$post['ip'];
+		$obj=ORM::for_table('account_log')->create();
+		$obj->log_time=time();
+		$obj->log_user=$_SESSION['auth_uid'];
+		$obj->log_ip=$ip;
+		$obj->log_event='unblock';
+		$rt=$obj->save();
+		if($rt){
+			echo 'ok';
+		}else{
+			echo 'err';
+		}
+	}
+ });
 ?>
