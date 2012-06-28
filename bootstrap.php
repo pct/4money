@@ -1,7 +1,7 @@
 <?php
 
 require 'Slim/Slim.php';
-require 'Slim/views/TwigView.php';
+require 'Slim/Views/TwigView.php';
 require 'lib/idiorm.php';
 require 'config.php';
 
