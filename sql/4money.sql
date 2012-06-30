@@ -56,3 +56,33 @@ CREATE TABLE `customer` (
     KEY `customer_uid` (`customer_uid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+--
+-- `account`
+--
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE IF NOT EXISTS `account` (
+  `acc_name` varchar(32) NOT NULL,
+  `acc_pwd` text,
+  `acc_salt` text,
+  `acc_auth_type` set('db','pop3') NOT NULL DEFAULT 'db',
+  `acc_flag` set('enable','disable') NOT NULL DEFAULT 'disable',
+  `acc_company` text,
+  PRIMARY KEY  (`acc_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Default User/Password  admin/admin
+--
+INSERT INTO `account` (`acc_name`, `acc_pwd`, `acc_salt`, `acc_auth_type`, `acc_flag`, `acc_company`) VALUES
+('admin', '4777989ca4bb45db927125baf62221537370c557', 'default', 'db', 'enable', NULL);
+
+--
+-- `account_log`
+--
+DROP TABLE IF EXISTS `account_log`;
+CREATE TABLE IF NOT EXISTS `account_log` (
+`log_time` TEXT NOT NULL ,
+`log_user` TEXT NOT NULL ,
+`log_event` TEXT NOT NULL ,
+`log_ip` TEXT NOT NULL
+) ENGINE = MyISAM DEFAULT CHARSET=utf8;

@@ -1,0 +1,123 @@
+{% extends '_layout.html' %}
+{% block content %}
+{% include '_form_head.html' %}
+
+<article class="module width_full">
+    <header>
+        <h3>帳號資訊</h3>
+    </header>
+    <div class="module_content">
+        <form id="_form_account" class="wufoo">
+			<ul>
+				<li>
+					<label class="desc" for="account_id">
+						帳號
+					</label>
+					<span style="font-size:20px;hight:40px;">
+						<input class="field text" value="{{user.acc_name}}" name="account_id" readonly>
+					</span>
+				</li>
+				<li>
+					<label class="desc" for="account_id">
+						狀態
+					</label>
+					<span>
+						<select class="required field" style="height:40px;" name="account_flag">
+						{% for v,t in status_words%}
+						<option value="{{v}}" {% if v == user.acc_flag %}selected="selected"{% endif %}>{{t}}</option>
+						{% endfor %}
+						</select>
+					</span>
+				</li>
+				<li>
+					<label class="desc" for="account_id">
+						認證方式
+					</label>
+					<span>
+						<select class="required field" style="height:40px;" name="account_type">
+						{% for v,t in type_words%}
+						<option value="{{v}}" {% if v == user.acc_auth_type %}selected="selected"{% endif %}>{{t}}</option>
+						{% endfor %}
+						</select>
+					</span>
+				</li>
+				<li class="pwd_field">
+					<label class="desc" for="account_pwd">
+						密碼
+					</label>
+					<span>
+						<input class="field text" size="50" type="password" value="" name="account_pwd">
+					</span>
+				</li>
+				<li class="pwd_field">
+					<label class="desc" for="account_pwd2">
+						確認密碼
+					</label>
+					<span>
+						<input class="field text" size="50" type="password" value="" name="account_pwd2">
+					</span>
+				</li>
+				<li>
+					<label class="desc" for="account_name">
+						姓名
+					</label>
+					<span>
+						<input class="field text" size="50" value="{{info['name']}}" name="account_name">
+					</span>
+				</li>
+				<li>
+					<label class="desc" for="account_phone">
+						聯絡電話/分機
+					</label>
+					<span>
+						<input class="field text" size="50" value="{{info['phone']}}" name="account_phone">
+					</span>
+				</li>
+				<li>
+					<label class="desc" for="account_email">
+						Email
+					</label>
+					<span>
+						<input class="field text" size="50" value="{{info['email']}}" name="account_email">
+					</span>
+				</li>
+			</ul>
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="新增帳號" />
+            </div>
+		</form>
+    </div>
+</article>
+<div id="show_notice_info" style="display:none;"></div>
+<script type="text/javascript">
+function select_type(){
+	var src="{{user.acc_auth_type}}";
+	var v=$('select[name=account_type]').val();
+	if(v!='db'){
+		$('.pwd_field').css('display','none');
+		$('.pwd_field input').removeClass('required');
+	}else{
+		$('.pwd_field').css('display','block');
+		if(src=="db"){
+			$('.pwd_field input').removeClass('required');
+		}else{
+			$('.pwd_field input').addClass('required');
+		}
+	}
+}
+$(function() {
+	select_type();
+	$('select[name=account_type]').change(select_type);
+    $('#_form_account').validate({
+        submitHandler: function() {
+            $.post('{{doc_root}}/ajax_user_edit', $('#_form_account').serialize(), function(data) {
+                $('#show_notice_info').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
+            });
+            return false;
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -11,12 +11,17 @@
                 <h1 class="site_title">
                     <a href="{{full_doc_root}}/home"><img src="{{full_doc_root}}/images/4money_logo.png" width="150" alt="4money" title="4money" border="0" /></a>
                 </h1>
-                <h2 class="section_title">{{breadcrumb_title}}</h2>
+                <h2 class="section_title" style="text-align:center;width:64%;">{{breadcrumb_title}}</h2>
+				{% if SECURITY_LEVEL > 0 %}
+				<div class="btn_view_site">
+					<a href="{{doc_root}}/logout">登出</a>
+				</div>
+				{% endif %}
             </hgroup>
         </header>
         <section id="secondary_bar">
             <div class="user">
-                <p><a id="hide_menu" style="float:right;" href="#">隱藏選單</a></p>
+                <p>{{session_uid}}<a id="hide_menu" style="float:right;" href="#">隱藏選單</a></p>
             </div>
             {% include '_breadcrumb.html' %}
         </section>

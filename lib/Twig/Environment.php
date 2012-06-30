@@ -17,7 +17,7 @@
  */
 class Twig_Environment
 {
-    const VERSION = '1.8.2-DEV';
+    const VERSION = '1.8.2';
 
     protected $charset;
     protected $loader;
@@ -50,9 +50,8 @@ class Twig_Environment
      *
      * Available options:
      *
-     *  * debug: When set to `true`, the generated templates have a __toString()
-     *           method that you can use to display the generated nodes (default to
-     *           false).
+     *  * debug: When set to true, it automatically set "auto_reload" to true as
+     *           well (default to false).
      *
      *  * charset: The charset used by the templates (default to utf-8).
      *
@@ -79,8 +78,8 @@ class Twig_Environment
      *                   (default to -1 which means that all optimizations are enabled;
      *                   set it to 0 to disable).
      *
-     * @param Twig_LoaderInterface   $loader  A Twig_LoaderInterface instance
-     * @param array                  $options An array of options
+     * @param Twig_LoaderInterface $loader  A Twig_LoaderInterface instance
+     * @param array                $options An array of options
      */
     public function __construct(Twig_LoaderInterface $loader = null, $options = array())
     {
@@ -706,7 +705,7 @@ class Twig_Environment
 
             foreach ($this->getExtensions() as $extension) {
                 $parsers = $extension->getTokenParsers();
-                foreach($parsers as $parser) {
+                foreach ($parsers as $parser) {
                     if ($parser instanceof Twig_TokenParserInterface) {
                         $this->parsers->addTokenParser($parser);
                     } elseif ($parser instanceof Twig_TokenParserBrokerInterface) {

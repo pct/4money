@@ -33,12 +33,56 @@
 
 <div id="show_notice" style="display:none;"></div>
 
+<article class="module width_full">
+    <header>
+        <h3>外部認證設定</h3>
+    </header>
+    <div class="module_content">
+        <form id="_form2" class="wufoo">
+            <ul>
+                <li>
+                    <label class="desc" for="auth_pop3_host">
+                        POP3伺服器位址：
+                    </label>
+                    <span>
+                        <input class="field text" size="50" type="text" value="{{auth_pop3_host}}" name="auth_pop3_host" />
+                    </span>
+                </li>
+            </ul>
+			<h4 class="alert_info" style="margin:0 0 1em;">連接埠:110 Non-SSL</h4>
+            <label class="desc" for="quotation_id_prefix">
+                POP3變更密碼訊息
+            </label>
+            <span>
+                <textarea rows="5" cols="70" name="auth_pop3_msg">{{auth_pop3_msg}}</textarea>
+            </span>
+			<h4 class="alert_info" style="margin:0 0 1em;">訊息內容支援HTML標籤</h4>
+            <div>
+                <input id="submit" class="btTxt submit" type="submit" value="儲存" />
+            </div>
+        </form>
+    </div> 
+</article>
+
+<div id="show_notice2" style="display:none;"></div>
+
 <script type="text/javascript">
 $(function() {
-    $('#_form').validate({
+    $('#_form').validate({//
         submitHandler: function() {
             $.post('{{doc_root}}/ajax_save_options', $('#_form').serialize(), function(data) {
                 $('#show_notice').html(data).fadeIn('slow', function() {
+                    $.equal_height();
+                });
+            });
+            return false;
+        }
+    });
+
+    $('#_form2').validate({//
+        submitHandler: function() {
+            $.post('{{doc_root}}/ajax_save_options_auth', $('#_form2').serialize(), function(data) {
+                $('#show_notice2').html(data).fadeIn('slow', function() {
                     $.equal_height();
                 });
             });

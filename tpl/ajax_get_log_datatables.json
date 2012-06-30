@@ -1,0 +1,5 @@
+{  "sEcho": {{echo}},
+  "iTotalRecords": "{{total}}",
+  "iTotalDisplayRecords": "{{totaldisplay}}",
+  "aaData":{% autoescape false %}{{data|json_encode()}}{% endautoescape %}
+}

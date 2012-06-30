@@ -9,12 +9,23 @@
         <li class="icn_add_user"><a href="{{doc_root}}/customer_create">建立客戶</a></li>
         <li class="icn_view_users"><a href="{{doc_root}}/customer_list">客戶列表</a></li>
     </ul>
-    <h3>設定</h3>
+	<h3>帳號設定</h3>
+	<ul>
+		<li class="icn_profile"><a href="{{doc_root}}/profile">偏好設定</a></li>
+	</ul>
+	{% if session_uid in SYSTEM_ADMIN %}
+    <h3>系統設定</h3>
     <ul>
         <li class="icn_folder"><a href="{{doc_root}}/company_options">公司資料</a></li>
         <li class="icn_security"><a href="{{doc_root}}/bank_options">銀行帳戶</a></li>
         <li class="icn_settings"><a href="{{doc_root}}/advance_options">進階設定</a></li>
+		{% if SECURITY_LEVEL > 0 %}
+		<li class="icn_add_user"><a href="{{doc_root}}/user_add">新增帳號</a></li>
+		<li class="icn_profile"><a href="{{doc_root}}/user_mgr">帳號管理</a></li>
+		<li class="icn_categories"><a href="{{doc_root}}/log/login">登入紀錄</a></li>
+		{% endif %}
     </ul>
+	{% endif %}
 </div>
 <script type="text/javascript">
 $(function() {

@@ -22,7 +22,7 @@ class Wkhtmltopdf
     protected $_path;               // path to directory where to place files
     protected $_footerHtml;
     protected $_username;
-    protected $_password;
+    protected $_password;    protected $_cookie_name = null;    protected $_cookie_value = null;
 
     /**
      * path to executable
@@ -489,7 +489,12 @@ class Wkhtmltopdf
     {
         return $this->_password;
     }
-
+    /**     * set Cookie     *     * @param string $name     * @param string $value     */    public function setCookie($name,$value)    {        $this->_cookie_name = $name;        $this->_cookie_value = $value;    }    /**
+     * get Cookie
+     *
+     * @return string
+     */    public function getCookie()    {        if($this->_cookie_name==null||empty($this->_cookie_name)){            return false;        }        return '"'.$this->_cookie_name.'='.$this->_cookie_value.'"';
+        //return $this->_cookie_name.' '.escapeshellarg($this->_cookie_value);//not work on resource request.    }
     /**
      * returns command to execute
      *
@@ -499,7 +504,8 @@ class Wkhtmltopdf
     protected function _getCommand()
     {
         $command = $this->_bin;
-
+        //$command .= ($this->getCookie()!==false) ? " --cookie ".$this->getCookie() : "";//not work on resource request.
+        $command .= ($this->getCookie()!==false) ? " --custom-header Cookie ".$this->getCookie() : "";
         $command .= ($this->getCopies() > 1) ? " --copies " . $this->getCopies() : "";
         $command .= " --orientation " . $this->getOrientation();
         $command .= " --page-size " . $this->getPageSize();

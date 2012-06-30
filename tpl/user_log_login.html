@@ -1,0 +1,137 @@
+{% extends '_layout.html' %}
+
+{% block head %}
+{% include '_header.html' %}
+{% include '_list_header.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_full">
+    <header>
+        <h3>{{breadcrumb_title}}</h3>
+    </header>
+    <div class="module_content log_list_table_row">
+        <table id="log_list_table" cellpadding="0" cellspacing="0" border="0" class="display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>時間</th>
+                    <th>帳號</th>
+                    <th>來源IP</th>
+                    <th>事件</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+</article>
+<style type="text/css">
+.log_list_table #log_list_table tbody tr.even:hover, #log_list_table tbody tr.even td.highlighted {
+	background-color: #ECFFB3;
+}
+
+.log_list_table #log_list_table tbody tr.odd:hover, #log_list_table tbody tr.odd td.highlighted {
+	background-color: #E6FF99;
+}
+
+.log_list_table_row #log_list_table tr.even:hover {
+	background-color: #ECFFB3;
+}
+
+.log_list_table_row #log_list_table tr.even:hover td.sorting_1 {
+	background-color: #DDFF75;
+}
+
+.log_list_table_row #log_list_table tr.even:hover td.sorting_2 {
+	background-color: #E7FF9E;
+}
+
+.log_list_table_row #log_list_table tr.even:hover td.sorting_3 {
+	background-color: #E2FF89;
+}
+
+.log_list_table_row #log_list_table tr.odd:hover {
+	background-color: #E6FF99;
+}
+
+.log_list_table_row #log_list_table tr.odd:hover td.sorting_1 {
+	background-color: #D6FF5C;
+}
+
+.log_list_table_row #log_list_table tr.odd:hover td.sorting_2 {
+	background-color: #E0FF84;
+}
+
+.log_list_table_row #log_list_table tr.odd:hover td.sorting_3 {
+	background-color: #DBFF70;
+}
+
+.log_list_table_row .log_failed .sorting_1, .log_list_table_row .log_block .sorting_1{
+	background-color: #FFD5D5;
+}
+
+.log_list_table_row #log_list_table .log_failed, .log_list_table_row #log_list_table .log_block{
+	background-color: #FEE;
+}
+
+.log_list_table_row .log_unblock .sorting_1{
+	background-color: #C4FFC4;
+}
+
+.log_list_table_row #log_list_table .log_unblock{
+	background-color: #DFD;
+}
+
+#log_list_table a{float:right;}
+</style>
+<script type="text/javascript">
+$(function() {
+    $('#log_list_table').dataTable({
+        "bServerSide": true,
+        "bProcessing": true,
+        "sAjaxSource": "{{full_doc_root}}/log_ajax/login",
+        "fnServerData": function ( sSource, aoData, fnCallback ) {
+            $.ajax( {
+                "dataType": 'json', 
+                "type": "POST", 
+                "url": sSource, 
+                "data": aoData, 
+                "success": fnCallback
+            })
+        },
+        "bJQueryUI": true, 
+        "iDisplayLength": 15, 
+        "aLengthMenu": [[15, 50, -1], [15, 50, "All"]], 
+        "sPaginationType": "full_numbers", 
+        "oLanguage":{"sUrl": "{{full_doc_root}}/js/datatables_tw.txt"},
+        "aaSorting": [[ 0, "desc" ]],
+        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+			if(aData[3]==="failed"||aData[3]==='block'||aData[3]==='unblock'){
+				$('td', nRow).closest('tr').addClass('log_'+aData[3]);
+				if(aData[3]==='block'){
+					unlock_but='<a class="button unlock_but" onclick="unlock(this)" href="#">解除封鎖IP</a>';
+					$($('td',nRow)[3]).append(unlock_but);
+				}
+			}
+            return nRow;
+        }
+    });
+});
+function unlock(but){
+	unlock_ip=$($('td',$(but).parent().parent())[2]).html();
+	$.post('{{full_doc_root}}/log_ajax/unlock',{ip:unlock_ip}, function(data) {
+		if(data=="ok"){
+			$(but).remove();
+		}
+	});
+}
+</script>
+
+{% endblock %}
