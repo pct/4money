@@ -158,15 +158,14 @@ $app->get('/quotation_download_pdf/:id', function($id) use ($app) {
     $quotation = check_quotation_exists($id);
 
     $url = $app->config('full_doc_root').'/quotation_view/'.$id;
-    $html = file_get_contents($url);
-
     try {
         $wkhtmltopdf = new Wkhtmltopdf(array(
             'path' => PROJECT_PATH . '/pdf/', 
             'binpath'=> WKHTMLTOPDF_BIN_PATH
         ));
         $wkhtmltopdf->setTitle($quotation->quotation_name);
-        $wkhtmltopdf->setHtml($html);
+        $wkhtmltopdf->setUrl($url);
+        $wkhtmltopdf->setCookie(COOKIE_NAME,urlencode($app->getCookie(COOKIE_NAME)));
         $wkhtmltopdf->output(Wkhtmltopdf::MODE_DOWNLOAD, $quotation->quotation_name.'.pdf');
     } catch (Exception $e) {
         $app->notFound();
