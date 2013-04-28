@@ -138,6 +138,12 @@ None. Please tell me your ideas, thanks!
 
 Changelog
 ----------
+v0.2.0::
+
+    NEW: with tax
+    NEW: refactoring with composer
+    UPDATE: Slim framework from 1.6 to 2.0
+
 v0.1.6.3::
 
     NEW: apply pull request about money format from @nansenat16

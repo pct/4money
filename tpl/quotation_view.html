@@ -70,20 +70,29 @@
             </table>
         </div>
         <div id="price_info">
-            <table cellspacing="0" cellpadding="0">
-                <tr>
-                    <th>小計</th>
-                    <td id="sub_total_price">{{quotation.sub_total_price|money}}&nbsp;</td>
-                </tr>
-                <tr>
-                    <th>稅金 (5%)</th>
-                    <td id="vat_price">{{quotation.vat_price|money}}&nbsp;</td>
-                </tr>
-                <tr>
-                    <th>總計</th>
-                    <td id="total_price">{{quotation.total_price|money}}&nbsp;</td>
-                </tr>
-            </table>
+          {% if quotation.tax == 0 %}
+          <table cellspacing="0" cellpadding="0">
+            <tr>
+              <th>總計(含稅)</th>
+              <td id="sub_total_price">{{quotation.sub_total_price|money}}&nbsp;</td>
+            </tr>
+          </table>
+          {% else %}
+          <table cellspacing="0" cellpadding="0">
+            <tr>
+              <th>小計</th>
+              <td id="sub_total_price">{{quotation.sub_total_price|money}}&nbsp;</td>
+            </tr>
+            <tr>
+              <th>稅金 (5%)</th>
+              <td id="vat_price">{{quotation.vat_price|money}}&nbsp;</td>
+            </tr>
+            <tr>
+              <th>總計</th>
+              <td id="total_price">{{quotation.total_price|money}}&nbsp;</td>
+            </tr>
+          </table>
+          {% endif %}
         </div>
         <div>
             <p id="customer_notes" >{{quotation.customer_notes|nl2br}}</p>

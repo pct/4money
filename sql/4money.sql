@@ -30,6 +30,7 @@ CREATE TABLE `quotation` (
     `total_price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
     `bank_info` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
     `status` set('confirmed','canceled','paid','wait') NOT NULL DEFAULT 'wait',
+    `tax` int(1) unsigned NOT NULL DEFAULT 1,
     PRIMARY KEY (`quotation_id`),
     KEY `quotation_name` (`quotation_name`),
     KEY `confirm` (`status`)

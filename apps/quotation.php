@@ -204,6 +204,7 @@ $app->post('/ajax_save_quotations', function() use ($app) {
     $post = $app->request()->post();
 
     if ($post) {
+        $tax = (isset($post['tax'])) ? 0 : 1; # 0 被要求含稅，1 原價加稅
         $wording = (isset($post['quotation_id'])) ? '更新' : '建立';
 
         $quotation = (isset($post['quotation_id'])) ? 
@@ -215,6 +216,7 @@ $app->post('/ajax_save_quotations', function() use ($app) {
         }
 
         $quotation->items = serialize($post['items']);
+        $quotation->tax = $tax;
 
         $ret = $quotation->save();
 

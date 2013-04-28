@@ -1,0 +1,1 @@
+ALTER TABLE `quotation` ADD `tax` INT( 1 ) NOT NULL DEFAULT 1;

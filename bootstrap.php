@@ -1,7 +1,5 @@
 <?php
-
-require 'Slim/Slim.php';
-require 'Slim/views/TwigView.php';
+require 'vendor/autoload.php';
 require 'lib/idiorm.php';
 require 'config.php';
 
@@ -22,27 +20,21 @@ ORM::configure('id_column_overrides', array(
     'option'    => 'option_id',
 ));
 
-$slim_settings = array(
+$app = new \Slim\Slim(array(
     'mode'               => 'production',
     'debug'              => false, 
     'log.enable'         => true,
-	'view'               => new TwigView('./lib/Twig','./tpl_cache'),
-    'templates.path'     => './tpl',
+    'templates.path'     => 'tpl',
+));
+
+\Slim\Extras\Views\Twig::$twigOptions = array(
+    'charset' => 'utf-8',
+    'cache' => realpath('./tpl_cache'),
+    'auto_reload' => true,
+    'strict_variables' => false,
+    'autoescape' => true
 );
-
-$app = new Slim($slim_settings);
-
-$app->add(new Slim_Middleware_SessionCookie(array(
-    'expires' => '20 minutes',
-    'path' => '/',
-    'domain' => null,
-    'secure' => false,
-    'httponly' => false,
-    'name' => '4money_session',
-    'secret' => $COOKIES_SECRET_KEY,
-    'cipher' => MCRYPT_RIJNDAEL_256,
-    'cipher_mode' => MCRYPT_MODE_CBC
-)));
+$app->view(new \Slim\Extras\Views\Twig());
 
 require 'app.php';
 $app->run();
