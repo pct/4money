@@ -24,12 +24,12 @@
         </div>
         <textarea class="required" id="company_name" name="company_name">{{company_name}} - 報價單</textarea>
         <textarea class="required" id="company_info" name="company_info">
-          {{company_name}}
-          地址：{{company_addr}}
-          電話：{{company_phone}}
-          {% if company_fax %}傳真：{{company_fax}}{% endif %}
+{{company_name}}
+地址：{{company_addr}}
+電話：{{company_phone}}
+{% if company_fax %}傳真：{{company_fax}}{% endif %}
 
-          統編：{{company_id}}
+統編：{{company_id}}
         </textarea>
       </div>
       <div>
@@ -42,11 +42,11 @@
         </div>
         <textarea class="required" id="customer_info" name="customer_info">客戶資料</textarea>
         <textarea class="required" id="company_contact" name="company_contact">
-          {{company_name}} 
-          聯絡人：{{company_username}}
-          電話：{{company_phone}}
-          Email：{{company_email}}
-          日期：{{today}}
+{{company_name}} 
+聯絡人：{{company_username}}
+電話：{{company_phone}}
+Email：{{company_email}}
+日期：{{today}}
         </textarea>
       </div>
       <div class="clear"></div>
@@ -145,11 +145,11 @@
       <div class="company">
         <hr />
         <textarea id="bank_info" name="bank_info">
-          付款方式：
-          戶名：{{bank_company_title}}
-          銀行：{{bank_name}}
-          代碼：{{bank_code}}
-          帳號：{{bank_account}}
+付款方式：
+戶名：{{bank_company_title}}
+銀行：{{bank_name}}
+代碼：{{bank_code}}
+帳號：{{bank_account}}
         </textarea>
         <hr />
       </div>
