@@ -138,6 +138,10 @@ None. Please tell me your ideas, thanks!
 
 Changelog
 ----------
+v0.2.0.1::
+
+    FIX: show bank_info at quotation view
+
 v0.2.0::
 
     NEW: with tax
