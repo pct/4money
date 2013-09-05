@@ -241,11 +241,11 @@ The following filters will be matched by the above defined dynamic filter:
 
 A dynamic filter can define more than one dynamic parts::
 
-    $filter = new Twig_SimpleFilter('*_path', function ($name, $suffix, $arguments) {
+    $filter = new Twig_SimpleFilter('*_path_*', function ($name, $suffix, $arguments) {
         // ...
     });
 
-The filter will receive all dynamic part values before the normal filters
+The filter will receive all dynamic part values before the normal filter
 arguments, but after the environment and the context. For instance, a call to
 ``'foo'|a_path_b()`` will result in the following arguments to be passed to
 the filter: ``('a', 'b', 'foo')``.
@@ -277,7 +277,59 @@ to create an instance of ``Twig_SimpleTest``::
     });
     $twig->addTest($test);
 
-Tests do not support any options.
+Tests allow you to create custom application specific logic for evaluating
+boolean conditions. As a simple, example let's create a Twig test that checks if
+objects are 'red'::
+
+    $twig = new Twig_Environment($loader)
+    $test = new Twig_SimpleTest('red', function ($value) {
+        if (isset($value->color) && $value->color == 'red') {
+            return true;
+        }
+        if (isset($value->paint) && $value->paint == 'red') {
+            return true;
+        }
+        return false;
+    });
+    $twig->addTest($test);
+
+Test functions should always return true/false.
+
+When creating tests you can use the ``node_class`` option to provide custom test
+compilation. This is useful if your test can be compiled into PHP primitives.
+This is used by many of the tests built into Twig::
+
+    $twig = new Twig_Environment($loader)
+    $test = new Twig_SimpleTest(
+        'odd',
+        null,
+        array('node_class' => 'Twig_Node_Expression_Test_Odd'));
+    $twig->addTest($test);
+
+    class Twig_Node_Expression_Test_Odd extends Twig_Node_Expression_Test
+    {
+        public function compile(Twig_Compiler $compiler)
+        {
+            $compiler
+                ->raw('(')
+                ->subcompile($this->getNode('node'))
+                ->raw(' % 2 == 1')
+                ->raw(')')
+            ;
+        }
+    }
+
+The above example, shows how you can create tests that use a node class. The
+node class has access to one sub-node called 'node'. This sub-node contains the
+value that is being tested. When the ``odd`` filter is used in code like:
+
+.. code-block:: jinja
+
+    {% if my_value is odd %}
+
+The ``node`` sub-node will contain an expression of ``my_value``. Node based
+tests also have access to the ``arguments`` node. This node will contain the
+various other arguments that have been provided to your test.
 
 Tags
 ----
@@ -330,14 +382,15 @@ Now, let's see the actual code of this class::
     {
         public function parse(Twig_Token $token)
         {
-            $lineno = $token->getLine();
-            $name = $this->parser->getStream()->expect(Twig_Token::NAME_TYPE)->getValue();
-            $this->parser->getStream()->expect(Twig_Token::OPERATOR_TYPE, '=');
-            $value = $this->parser->getExpressionParser()->parseExpression();
+            $parser = $this->parser;
+            $stream = $parser->getStream();
 
-            $this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
+            $name = $stream->expect(Twig_Token::NAME_TYPE)->getValue();
+            $stream->expect(Twig_Token::OPERATOR_TYPE, '=');
+            $value = $parser->getExpressionParser()->parseExpression();
+            $stream->expect(Twig_Token::BLOCK_END_TYPE);
 
-            return new Project_Set_Node($name, $value, $lineno, $this->getTag());
+            return new Project_Set_Node($name, $value, $token->getLine(), $this->getTag());
         }
 
         public function getTag()
@@ -384,9 +437,9 @@ The ``Project_Set_Node`` class itself is rather simple::
 
     class Project_Set_Node extends Twig_Node
     {
-        public function __construct($name, Twig_Node_Expression $value, $lineno, $tag = null)
+        public function __construct($name, Twig_Node_Expression $value, $line, $tag = null)
         {
-            parent::__construct(array('value' => $value), array('name' => $name), $lineno, $tag);
+            parent::__construct(array('value' => $value), array('name' => $name), $line, $tag);
         }
 
         public function compile(Twig_Compiler $compiler)
