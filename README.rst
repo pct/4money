@@ -3,6 +3,8 @@
 
 4money, let you create your own quotation for your customers.
 
+Test Site: http://4money-4point.rhcloud.com
+
 Screenshot
 ----------
 
