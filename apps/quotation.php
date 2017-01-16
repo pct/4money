@@ -229,6 +229,11 @@ $app->post('/ajax_save_quotations', function() use ($app) {
                 'link_msg' => '到列表查看',
                 'quotation_id' => $quotation_id
               );
+
+            // get id after create
+            if ($quotation->quotation_id > 0) {
+                $data['quotation_id'] = $quotation->quotation_id;
+            }
             
         } else {
             $data = array(
