@@ -28,9 +28,14 @@
             <tbody>
                 {% for quotation in quotations %}
                 <tr>
-                    <td>{{quotation.quotation_id}}</td>
+                  <td>{{quotation.quotation_id}}</td>
+                    <!--
                     <td>
-                        <a class="button" href="{{doc_root}}/quotation_view/{{quotation.quotation_id}}"><span class="book icon"></span>{{quotation.quotation_name}}</a>
+                      <a class="button" href="{{doc_root}}/quotation_view/{{quotation.quotation_id}}"><span class="book icon"></span>{{quotation.quotation_name}}</a>
+                    </td>
+                    -->
+                    <td>
+                        <a style="color:#0073ea;" target="_blank" href="{{doc_root}}/quotation_view/{{quotation.quotation_id}}"><span class="book icon"></span>{{- quotation.company_name|split('\r\n')[1:]|join(' ')|trim ?: quotation.company_name|trim }}</a>
                     </td>
                     <td>{{quotation.customer_info}}</td>
                     <td class="money">{{quotation.sub_total_price|money}}</td>
@@ -44,7 +49,7 @@
                     <td>{{quotation.tax ? '否' : '是'}}</td>
                     <td>{{quotation_status_words[quotation.status]}}</td>
                     <td nowrap>
-                        <a class="left button" href="quotation_view/{{quotation.quotation_id}}"><span class="book icon"></span>查看</a><a class="middle button" href="quotation_edit/{{quotation.quotation_id}}"><span class="pen icon"></span>編輯</a><a class="middle button" href="quotation_status_update/{{quotation.quotation_id}}"><span class="cog icon"></span>更新狀態</a><a class="right button negative" href="quotation_delete/{{quotation.quotation_id}}"><span class="trash icon"></span>刪除</a>
+                        <a class="left button" target="_blank" href="quotation_view/{{quotation.quotation_id}}"><span class="book icon"></span>查看</a><a class="middle button" target="_blank" href="quotation_edit/{{quotation.quotation_id}}"><span class="pen icon"></span>編輯</a><a class="middle button" target="_blank" href="quotation_status_update/{{quotation.quotation_id}}"><span class="cog icon"></span>更新狀態</a><a class="right button negative" target="_blank" href="quotation_delete/{{quotation.quotation_id}}"><span class="trash icon"></span>刪除</a>
                     </td>
                 </tr>
                 {% endfor %}

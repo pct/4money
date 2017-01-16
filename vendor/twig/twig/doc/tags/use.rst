@@ -10,7 +10,7 @@
     regular templates. It is mainly used by projects that need to make
     template blocks reusable without using inheritance.
 
-Template inheritance is one of the most powerful Twig's feature but it is
+Template inheritance is one of the most powerful features of Twig but it is
 limited to single inheritance; a template can only extend one other template.
 This limitation makes template inheritance simple to understand and easy to
 debug:
@@ -39,7 +39,8 @@ The ``use`` statement tells Twig to import the blocks defined in
 
 .. code-block:: jinja
 
-    # blocks.html
+    {# blocks.html #}
+    
     {% block sidebar %}{% endblock %}
 
 In this example, the ``use`` statement imports the ``sidebar`` block into the
@@ -73,7 +74,7 @@ is ignored. To avoid name conflicts, you can rename imported blocks:
 
     {% extends "base.html" %}
 
-    {% use "blocks.html" with sidebar as base_sidebar %}
+    {% use "blocks.html" with sidebar as base_sidebar, title as base_title %}
 
     {% block sidebar %}{% endblock %}
     {% block title %}{% endblock %}

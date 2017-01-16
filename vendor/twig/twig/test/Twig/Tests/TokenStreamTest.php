@@ -13,7 +13,7 @@ class Twig_Tests_TokenStreamTest extends PHPUnit_Framework_TestCase
 {
     protected static $tokens;
 
-    public function setUp()
+    protected function setUp()
     {
         self::$tokens = array(
             new Twig_Token(Twig_Token::TEXT_TYPE, 1, 1),
@@ -25,6 +25,18 @@ class Twig_Tests_TokenStreamTest extends PHPUnit_Framework_TestCase
             new Twig_Token(Twig_Token::TEXT_TYPE, 7, 1),
             new Twig_Token(Twig_Token::EOF_TYPE, 0, 1),
         );
+    }
+
+    /**
+     * @group legacy
+     */
+    public function testLegacyConstructorSignature()
+    {
+        $stream = new Twig_TokenStream(array(), 'foo', '{{ foo }}');
+        $this->assertEquals('foo', $stream->getFilename());
+        $this->assertEquals('{{ foo }}', $stream->getSource());
+        $this->assertEquals('foo', $stream->getSourceContext()->getName());
+        $this->assertEquals('{{ foo }}', $stream->getSourceContext()->getCode());
     }
 
     public function testNext()

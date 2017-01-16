@@ -4,6 +4,7 @@
 {% include '_header.html' %}
 {% include '_form_head.html' %}
 <link rel="stylesheet" href="{{doc_root}}/css/quotation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="{{doc_root}}/css/quotation_edit.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="{{doc_root}}/css/quotation_print.css" type="text/css" media="print" />
 <script type="text/javascript" src="{{doc_root}}/js/quotation.js"></script>
 {% endblock %}
@@ -15,6 +16,10 @@
     <h3>{{breadcrumb_title}}</h3>
   </header>
   <div class="module_content quotation">
+    <div class="print">
+      <a class="big button" href="{{full_doc_root}}/quotation_view/{{quotation.quotation_id}}"><span class="icon"></span>查看報價單</a>
+    </div>
+    <div class="clear"></div>
     <form id="_form" method="post">
       <input type="hidden" name="quotation_id" value="{{quotation.quotation_id}}" />
       <div class="company">

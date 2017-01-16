@@ -6,8 +6,6 @@ template to be escaped or not by using the ``autoescape`` tag:
 
 .. code-block:: jinja
 
-    {# The following syntax works as of Twig 1.8 -- see the note below for previous versions #}
-
     {% autoescape %}
         Everything will be automatically escaped in this block
         using the HTML strategy
@@ -64,6 +62,18 @@ Functions returning template data (like :doc:`macros<macro>` and
 
     Twig is smart enough to not escape an already escaped value by the
     :doc:`escape<../filters/escape>` filter.
+
+.. note::
+
+    Twig does not escape static expressions:
+
+    .. code-block:: jinja
+
+        {% set hello = "<strong>Hello</strong>" %}
+        {{ hello }}
+        {{ "<strong>world</strong>" }}
+
+    Will be rendered "<strong>Hello</strong> **world**".
 
 .. note::
 

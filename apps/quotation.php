@@ -113,7 +113,7 @@ $app->get('/quotation_view/:id', function($id) use ($app) {
     $data = array(
         'breadcrumb_title' => '查看報價單',
         'quotation'        => $quotation,
-        'quotation_items'  => $quotation_items,
+        'quotation_items'  => $quotation_items
     );
 
     $data = array_merge($data, $options);
@@ -207,7 +207,8 @@ $app->post('/ajax_save_quotations', function() use ($app) {
         $tax = (isset($post['tax'])) ? 0 : 1; # 0 被要求含稅，1 原價加稅
         $wording = (isset($post['quotation_id'])) ? '更新' : '建立';
 
-        $quotation = (isset($post['quotation_id'])) ? 
+        $quotation_id = (isset($post['quotation_id'])) ? $post['quotation_id'] : '';
+        $quotation = intval($quotation_id) > 0 ?
             ORM::for_table('quotation')->find_one($post['quotation_id']) : 
             ORM::for_table('quotation')->create();
 
@@ -225,8 +226,10 @@ $app->post('/ajax_save_quotations', function() use ($app) {
                 'class' => 'success',
                 'msg'   => '報價單'.$wording.'成功！',
                 'link'  => 'quotation_list',
-                'link_msg' => '到列表查看'
-            );
+                'link_msg' => '到列表查看',
+                'quotation_id' => $quotation_id
+              );
+            
         } else {
             $data = array(
                 'class' => 'error',

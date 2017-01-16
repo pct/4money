@@ -6,10 +6,10 @@ Tags
 
     autoescape
     block
-    filter
     do
     embed
     extends
+    filter
     flush
     for
     from
@@ -22,3 +22,4 @@ Tags
     spaceless
     use
     verbatim
+    with

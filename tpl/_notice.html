@@ -1,4 +1,5 @@
 <h4 class="alert_{{class}}">
     {{msg}}
-    {% if link and link_msg %}<a class="big button" href="{{doc_root}}/{{link}}">{{link_msg}} <span class="rightarrow icon"></span></a>{%endif%}
+    {% if link and link_msg %}<a class="big button" href="{{doc_root}}/{{link}}">{{link_msg}} <span class="rightarrow icon"></span></a>{% endif %}
+    {% if quotation_id > 0 %}<a class="big button" href="{{doc_root}}/quotation_view/{{quotation_id}}?print=1">直接前往列印 <span class="rightarrow icon"></span></a>{% endif %}
 </h4>

@@ -16,12 +16,12 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
     public function testSetMacroThrowsExceptionOnReservedMethods()
     {
         $parser = $this->getParser();
-        $parser->setMacro('display', $this->getMock('Twig_Node_Macro', array(), array(), '', null));
+        $parser->setMacro('parent', $this->getMockBuilder('Twig_Node_Macro')->disableOriginalConstructor()->getMock());
     }
 
     /**
      * @expectedException        Twig_Error_Syntax
-     * @expectedExceptionMessage Unknown tag name "foo". Did you mean "for" at line 1
+     * @expectedExceptionMessage Unknown "foo" tag. Did you mean "for" at line 1?
      */
     public function testUnknownTag()
     {
@@ -31,7 +31,23 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
             new Twig_Token(Twig_Token::BLOCK_END_TYPE, '', 1),
             new Twig_Token(Twig_Token::EOF_TYPE, '', 1),
         ));
-        $parser = new Twig_Parser(new Twig_Environment());
+        $parser = new Twig_Parser(new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock()));
+        $parser->parse($stream);
+    }
+
+    /**
+     * @expectedException        Twig_Error_Syntax
+     * @expectedExceptionMessage Unknown "foobar" tag at line 1.
+     */
+    public function testUnknownTagWithoutSuggestions()
+    {
+        $stream = new Twig_TokenStream(array(
+            new Twig_Token(Twig_Token::BLOCK_START_TYPE, '', 1),
+            new Twig_Token(Twig_Token::NAME_TYPE, 'foobar', 1),
+            new Twig_Token(Twig_Token::BLOCK_END_TYPE, '', 1),
+            new Twig_Token(Twig_Token::EOF_TYPE, '', 1),
+        ));
+        $parser = new Twig_Parser(new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock()));
         $parser->parse($stream);
     }
 
@@ -84,7 +100,7 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException Twig_Error_Syntax
-     * @expectedExceptionMessage A template that extends another one cannot have a body but a byte order mark (BOM) has been detected; it must be removed at line 1.
+     * @expectedExceptionMessage A template that extends another one cannot start with a byte order mark (BOM); it must be removed at line 1
      */
     public function testFilterBodyNodesWithBOM()
     {
@@ -94,7 +110,7 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
 
     public function testParseIsReentrant()
     {
-        $twig = new Twig_Environment(null, array(
+        $twig = new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock(), array(
             'autoescape' => false,
             'optimizations' => 0,
         ));
@@ -112,7 +128,7 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
             new Twig_Token(Twig_Token::EOF_TYPE, '', 1),
         )));
 
-        $this->assertEquals(null, $parser->getParent());
+        $this->assertNull($parser->getParent());
     }
 
     // The getVarName() must not depend on the template loaders,
@@ -120,26 +136,26 @@ class Twig_Tests_ParserTest extends PHPUnit_Framework_TestCase
     // see https://github.com/symfony/symfony/issues/4218
     public function testGetVarName()
     {
-        $twig = new Twig_Environment(null, array(
+        $twig = new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock(), array(
             'autoescape' => false,
             'optimizations' => 0,
         ));
 
-        $twig->parse($twig->tokenize(<<<EOF
+        $twig->parse($twig->tokenize(new Twig_Source(<<<EOF
 {% from _self import foo %}
 
 {% macro foo() %}
     {{ foo }}
 {% endmacro %}
 EOF
-        ));
+        , 'index')));
     }
 
     protected function getParser()
     {
-        $parser = new TestParser(new Twig_Environment());
+        $parser = new TestParser(new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock()));
         $parser->setParent(new Twig_Node());
-        $parser->stream = $this->getMockBuilder('Twig_TokenStream')->disableOriginalConstructor()->getMock();
+        $parser->stream = new Twig_TokenStream(array());
 
         return $parser;
     }

@@ -16,6 +16,7 @@
     </header>
     <div class="module_content quotation">
         <div class="print">
+          <a id="edit" class="big button" href="{{full_doc_root}}/quotation_edit/{{quotation.quotation_id}}"><span class="icon"></span>編輯報價單</a>
             <a id="print" class="big button"><span class="icon"></span>列印報價單</a>
             {% if pdf_enable %} 
             <a id="pdf" class="big button" href="{{full_doc_root}}/quotation_download_pdf/{{quotation.quotation_id}}"><span class="downarrow icon"></span>下載 PDF</a>
@@ -45,7 +46,7 @@
                     <tr>
 						<th>項次</th>
                         <th>項目說明</th>
-                        <th>數量</th>
+                        <th nowrap>數量</th>
                         <th>單價</th>
                         <th>金額</th>
                         <th>備註</th>
@@ -59,7 +60,7 @@
 						{% else %}
 						<td class="item_num"></td>
                         <td>{{item.desc|nl2br}}&nbsp;</td>
-                        <td class="item_quantity">{{item.quantity}}&nbsp;</td>
+                        <td class="item_quantity" nowrap>{{item.quantity}}&nbsp;</td>
                         <td class="item_price">{{item.price}}&nbsp;</td>
                         <td class="item_sub_total">&nbsp;</td>
                         <td>{{item.notes}}&nbsp;</td>
@@ -113,5 +114,14 @@
         <div class="clear"></div>
     </div>
 </article>
+
+<script type="text/javascript">
+  $(function() {
+    if (location.search.indexOf('print=1') >= 0) {
+      $('#main').height('');
+      window.print();
+    }
+  });
+</script>
 
 {% endblock %}
