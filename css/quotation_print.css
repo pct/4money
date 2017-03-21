@@ -46,6 +46,7 @@ input[type="submit"],
   background-color: white;
 }
 .quotation table td {
+  page-break-inside: avoid;
   border-width: 1px;
   padding: 3px;
   border-style: inset;
@@ -56,6 +57,7 @@ input[type="submit"],
   -moz-border-radius: ;
 }
 .quotation table tr {
+  page-break-inside: avoid;
   border-width: 1px;
   padding: 1px;
   border-style: inset;
@@ -64,6 +66,7 @@ input[type="submit"],
   -moz-border-radius: ;
 }
 .quotation table th {
+  page-break-inside: avoid;
   border-width: 1px;
   padding: 1px;
   border-style: inset;
@@ -101,6 +104,7 @@ input[type="submit"],
   padding-right: 5px;
 }
 .quotation #confirm {
+  page-break-inside: avoid;
   margin-top: 10px;
   border: 1px solid black;
   height: 200px;
