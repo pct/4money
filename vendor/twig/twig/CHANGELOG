@@ -1,3 +1,48 @@
+* 1.34.3 (2017-06-07)
+
+ * fixed namespaces introduction
+
+* 1.34.2 (2017-06-05)
+
+ * fixed namespaces introduction
+
+* 1.34.1 (2017-06-05)
+
+ * fixed namespaces introduction
+
+* 1.34.0 (2017-06-05)
+
+ * added support for PHPUnit 6 when testing extensions
+ * fixed PHP 7.2 compatibility
+ * fixed template name generation in Twig_Environment::createTemplate()
+ * removed final tag on Twig_TokenParser_Include
+ * added namespaced aliases for all (non-deprecated) classes and interfaces
+ * dropped HHVM support
+ * dropped PHP 5.2 support
+
+* 1.33.2 (2017-04-20)
+
+ * fixed edge case in the method cache for Twig attributes
+
+* 1.33.1 (2017-04-18)
+
+ * fixed the empty() test
+
+* 1.33.0 (2017-03-22)
+
+ * fixed a race condition handling when writing cache files
+ * "length" filter now returns string length when applied to an object that does
+   not implement \Countable but provides __toString()
+ * "empty" test will now consider the return value of the __toString() method for
+   objects implement __toString() but not \Countable
+ * fixed JS escaping for unicode characters with higher code points
+
+* 1.32.0 (2017-02-26)
+
+ * fixed deprecation notice in Twig_Util_DeprecationCollector
+ * added a PSR-11 compatible runtime loader
+ * added `side` argument to `trim` to allow left or right trimming only.
+
 * 1.31.0 (2017-01-11)
 
  * added Twig_NodeCaptureInterface for nodes that capture all output
