@@ -50,9 +50,10 @@ $(function() {
             var item_price = (isNaN(parseFloat(el.value))) ? 0 : parseFloat(el.value);
             var tmp_value = (item_quantity * item_price).toFixed(2);
             sub_total_price += tmp_value;
-            $.item_sub_total.html(tmp_value);
+            $.item_sub_total.html(Math.round(tmp_value));
         });
 
+        sub_total_price = Math.round(sub_total_price);
         vat_price = Math.round(sub_total_price * vat);
         total_price = (sub_total_price + vat_price);
 

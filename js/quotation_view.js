@@ -42,7 +42,7 @@ $(function() {
             var item_price = (isNaN(parseFloat($(el).html()))) ? 0 : parseFloat($(el).html());
             var tmp_value = (item_quantity * item_price).toFixed(2);
             $.item_sub_total.html($.number_format(tmp_value));
-			$.item_price.html($.number_format(item_price));
+			      $.item_price.html(item_price.toLocaleString());
         });
     }
     // 啟動時先算第一次
