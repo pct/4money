@@ -163,7 +163,7 @@ Email：{{company_email}}
       <input type="hidden" name="sub_total_price" value="" />
       <input type="hidden" name="vat_price" value="" />
       <input type="hidden" name="total_price" value="" />
-      <input type="submit" value="建立報價單" />
+      <input id="submit" type="submit" value="建立報價單" />
     </form>
   </div>
 </article>
@@ -194,6 +194,7 @@ Email：{{company_email}}
             $.post('{{doc_root}}/ajax_save_quotations', $('#_form').serialize(), function(data) {
                 $('#show_notice').html(data).fadeIn('slow', function() {
                     $.equal_height();
+                    $('#submit').fadeOut();
                 });
             });
             return false;
