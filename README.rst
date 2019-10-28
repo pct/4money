@@ -3,7 +3,7 @@
 
 4money, let you create your own quotation for your customers.
 
-Test Site: http://4money-4point.rhcloud.com
+Test Site: https://money4.herokuapp.com
 
 Screenshot
 ----------
