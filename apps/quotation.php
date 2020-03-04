@@ -82,6 +82,25 @@ $app->get('/quotation_edit/:id', function($id) use ($app) {
     $app->render('quotation_edit.html', $data);
 });
 
+$app->get('/quotation_clone/:id', function($id) use ($app) {
+    $option_keys = array(
+        'company_fax',
+    );
+
+    $options = get_options($option_keys);
+    $quotation = check_quotation_exists($id);
+    $quotation_items = unserialize($quotation->items);
+
+    $data = array(
+        'breadcrumb_title' => '複製報價單',
+        'quotation'        => $quotation,
+        'quotation_items'  => $quotation_items,
+    );
+
+    $data = array_merge($data, $options);
+    $app->render('quotation_edit.html', $data);
+});
+
 $app->get('/quotation_list', function() use ($app) {
     $quotations = ORM::for_table('quotation')->order_by_desc('quotation_id')->find_many();
 
