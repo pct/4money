@@ -98,7 +98,7 @@ $app->get('/quotation_clone/:id', function($id) use ($app) {
     );
 
     $data = array_merge($data, $options);
-    $app->render('quotation_edit.html', $data);
+    $app->render('quotation_clone.html', $data);
 });
 
 $app->get('/quotation_list', function() use ($app) {
