@@ -140,6 +140,10 @@ None. Please tell me your ideas, thanks!
 
 Changelog
 ----------
+v0.2.0.3::
+
+    NEW: add clone quotation function
+
 v0.2.0.2::
 
     FIX: get quotation id after created, and add some UX optimize
