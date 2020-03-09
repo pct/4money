@@ -106,9 +106,10 @@ $app->get('/quotation_list', function() use ($app) {
 
     $quotation_status_words = array(
         'confirmed' => '訂單確認',
-        'canceled'   => '取消',
+        'canceled'  => '取消',
         'paid'      => '已付款',
-        'wait'      => '待回應'
+        'wait'      => '待回應',
+        'after_bargain'  => '議價後'
     );
 
     $data = array(
@@ -190,7 +191,8 @@ $app->get('/quotation_status_update/:id', function($id) use ($app) {
         'confirmed' => '訂單確認',
         'canceled'  => '取消',
         'paid'      => '已付款',
-        'wait'      => '待回應'
+        'wait'      => '待回應',
+        'after_bargain'  => '議價後'
     );
 
     $quotation = check_quotation_exists($id);
