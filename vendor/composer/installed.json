@@ -1,167 +1,269 @@
-[
-    {
-        "name": "slim/slim",
-        "version": "2.2.0",
-        "version_normalized": "2.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/slimphp/Slim.git",
-            "reference": "b8181de1112a1e2f565b40158b621c34ded38053"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/slimphp/Slim/zipball/b8181de1112a1e2f565b40158b621c34ded38053",
-            "reference": "b8181de1112a1e2f565b40158b621c34ded38053",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2012-12-13T02:15:50+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Slim": "."
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Josh Lockhart",
-                "email": "info@joshlockhart.com",
-                "homepage": "http://www.joshlockhart.com/"
-            }
-        ],
-        "description": "Slim Framework, a PHP micro framework",
-        "homepage": "http://github.com/codeguy/Slim",
-        "keywords": [
-            "microframework",
-            "rest",
-            "router"
-        ]
-    },
-    {
-        "name": "slim/extras",
-        "version": "2.0.3",
-        "version_normalized": "2.0.3.0",
-        "target-dir": "Slim/Extras",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/codeguy/Slim-Extras.git",
-            "reference": "a022ed23dae94e164000acd891e3394d903f9623"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/codeguy/Slim-Extras/zipball/a022ed23dae94e164000acd891e3394d903f9623",
-            "reference": "a022ed23dae94e164000acd891e3394d903f9623",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0",
-            "slim/slim": ">=2.0.0"
-        },
-        "time": "2013-01-07T17:56:10+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Twig_Extensions_": "Views/Extension/",
-                "Slim\\Extras": "."
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andrew Smith",
-                "email": "a.smith@silentworks.co.uk",
-                "homepage": "http://www.silentworks.co.uk/"
+{
+    "packages": [
+        {
+            "name": "slim/extras",
+            "version": "2.0.3",
+            "version_normalized": "2.0.3.0",
+            "target-dir": "Slim/Extras",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeguy/Slim-Extras.git",
+                "reference": "a022ed23dae94e164000acd891e3394d903f9623"
             },
-            {
-                "name": "Josh Lockhart",
-                "email": "info@joshlockhart.com",
-                "homepage": "http://www.joshlockhart.com/"
-            }
-        ],
-        "description": "Extras package for the Slim Framework",
-        "homepage": "http://github.com/codeguy/Slim-Extras",
-        "keywords": [
-            "extensions",
-            "middleware",
-            "templating"
-        ]
-    },
-    {
-        "name": "twig/twig",
-        "version": "v1.34.3",
-        "version_normalized": "1.34.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/twigphp/Twig.git",
-            "reference": "451c6f4197e113e24c1c85bc3fc8c2d77adeff2e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/twigphp/Twig/zipball/451c6f4197e113e24c1c85bc3fc8c2d77adeff2e",
-            "reference": "451c6f4197e113e24c1c85bc3fc8c2d77adeff2e",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "require-dev": {
-            "psr/container": "^1.0",
-            "symfony/debug": "~2.7",
-            "symfony/phpunit-bridge": "~3.3@dev"
-        },
-        "time": "2017-06-07T18:45:17+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.34-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Twig_": "lib/"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeguy/Slim-Extras/zipball/a022ed23dae94e164000acd891e3394d903f9623",
+                "reference": "a022ed23dae94e164000acd891e3394d903f9623",
+                "shasum": ""
             },
-            "psr-4": {
-                "Twig\\": "src/"
-            }
+            "require": {
+                "php": ">=5.3.0",
+                "slim/slim": ">=2.0.0"
+            },
+            "time": "2013-01-07T17:56:10+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Twig_Extensions_": "Views/Extension/",
+                    "Slim\\Extras": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Smith",
+                    "email": "a.smith@silentworks.co.uk",
+                    "homepage": "http://www.silentworks.co.uk/"
+                },
+                {
+                    "name": "Josh Lockhart",
+                    "email": "info@joshlockhart.com",
+                    "homepage": "http://www.joshlockhart.com/"
+                }
+            ],
+            "description": "Extras package for the Slim Framework",
+            "homepage": "http://github.com/codeguy/Slim-Extras",
+            "keywords": [
+                "extensions",
+                "middleware",
+                "templating"
+            ],
+            "install-path": "../slim/extras/Slim/Extras"
         },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com",
-                "homepage": "http://fabien.potencier.org",
-                "role": "Lead Developer"
+        {
+            "name": "slim/slim",
+            "version": "2.2.0",
+            "version_normalized": "2.2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slimphp/Slim.git",
+                "reference": "b8181de1112a1e2f565b40158b621c34ded38053"
             },
-            {
-                "name": "Armin Ronacher",
-                "email": "armin.ronacher@active-4.com",
-                "role": "Project Founder"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/b8181de1112a1e2f565b40158b621c34ded38053",
+                "reference": "b8181de1112a1e2f565b40158b621c34ded38053",
+                "shasum": ""
             },
-            {
-                "name": "Twig Team",
-                "homepage": "http://twig.sensiolabs.org/contributors",
-                "role": "Contributors"
-            }
-        ],
-        "description": "Twig, the flexible, fast, and secure template language for PHP",
-        "homepage": "http://twig.sensiolabs.org",
-        "keywords": [
-            "templating"
-        ]
-    }
-]
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2012-12-13T02:15:50+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Slim": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Lockhart",
+                    "email": "info@joshlockhart.com",
+                    "homepage": "http://www.joshlockhart.com/"
+                }
+            ],
+            "description": "Slim Framework, a PHP micro framework",
+            "homepage": "http://github.com/codeguy/Slim",
+            "keywords": [
+                "microframework",
+                "rest",
+                "router"
+            ],
+            "install-path": "../slim/slim"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.23.0",
+            "version_normalized": "1.23.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/46cd95797e9df938fdd2b03693b5fca5e64b01ce",
+                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
+            "time": "2021-02-19T12:13:01+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.23-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.23.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../symfony/polyfill-ctype"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.44.5",
+            "version_normalized": "1.44.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "dd4353357c5a116322e92a00d16043a31881a81e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/dd4353357c5a116322e92a00d16043a31881a81e",
+                "reference": "dd4353357c5a116322e92a00d16043a31881a81e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-ctype": "^1.8"
+            },
+            "require-dev": {
+                "psr/container": "^1.0",
+                "symfony/phpunit-bridge": "^4.4.9|^5.0.9"
+            },
+            "time": "2021-09-17T08:35:19+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.44-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Twig Team",
+                    "role": "Contributors"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "https://twig.symfony.com",
+            "keywords": [
+                "templating"
+            ],
+            "support": {
+                "issues": "https://github.com/twigphp/Twig/issues",
+                "source": "https://github.com/twigphp/Twig/tree/v1.44.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../twig/twig"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
